@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:34:40 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/21 19:10:15 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/21 21:35:00 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,19 @@ static int	get_index(char *name, t_wrap *commands, int type_index)
 	return (-1);
 }
 
-void	interpret(char *name, int argc, char **argv, t_wrap *commands)
+void		interpret(char *name, int argc, char **argv, t_wrap *commands)
 {
 	int		type_index;
 	int		command_index;
 
 	type_index = 0;
+	command_index = -1;
 	while (type_index < NUM_COMMAND_TYPES && command_index < 0)
-		command_index = get_index(name, commands, type_index++);
+	{
+		command_index = get_index(name, commands, type_index);
+		if (command_index == -1)
+			type_index++;
+	}
 	if (type_index == NUM_COMMAND_TYPES)
 		print_command_list(commands);
 	else

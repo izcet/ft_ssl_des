@@ -6,20 +6,16 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:52:32 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/21 19:13:55 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/21 21:41:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-void		del_com(t_com com)
+void		del_com(t_com *com)
 {
-	if (com.name)
-		free(com.name);
-	com.name = NULL;
-	com.parse = NULL;
-	com.exec = NULL;
-	com.usage = NULL;
+	if (com->name)
+		free(com->name);
 }
 
 void		delete_commands(t_wrap *commands)
@@ -32,7 +28,7 @@ void		delete_commands(t_wrap *commands)
 	{
 		comm_i = 0;
 		while (comm_i < commands[type_i].num)
-			del_com(commands[type_i].list[comm_i]);
+			del_com(&(commands[type_i].list[comm_i++]));
 		if (commands[type_i].list)
 			free(commands[type_i].list);
 		if (commands[type_i].name)

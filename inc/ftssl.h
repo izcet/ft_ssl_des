@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/21 19:07:44 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/21 19:26:01 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FTSSL_H
 
 # include "libft.h"
+#include <stdio.h> // TODO
 
 # define NUM_COMMAND_TYPES	3
 
@@ -27,9 +28,9 @@ typedef struct		s_com
 
 typedef struct		s_wrap
 {
-	t_com			*list;
 	char			*name;
 	unsigned int	num;
+	t_com			*list;
 }					t_wrap;
 
 t_wrap				*init_commands(void);

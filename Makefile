@@ -6,13 +6,13 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 16:16:13 by irhett            #+#    #+#              #
-#    Updated: 2017/08/21 18:41:03 by irhett           ###   ########.fr        #
+#    Updated: 2017/08/21 20:27:41 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	ft_ssl
 
-CC			=	gcc
+CC			=	clang
 CFLAGS		=	-Wall -Werror -Wextra
 FLAGS		=	$(CFLAGS) $(XFLAGS)
 
