@@ -6,19 +6,19 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 16:16:13 by irhett            #+#    #+#              #
-#    Updated: 2017/08/21 16:16:13 by irhett           ###   ########.fr        #
+#    Updated: 2017/08/21 18:41:03 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	des
+NAME		=	ft_ssl
 
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
-XFLAGS		=	#-flags -for -X
 FLAGS		=	$(CFLAGS) $(XFLAGS)
 
 SRC_DIR		=	src
-SRC_FILE	=	##!!##
+SRC_FILE	=	main.c interpret.c init_commands.c commands.c call_command.c \
+
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 
 OBJ_DIR		=	obj
@@ -26,8 +26,8 @@ OBJ_FILE	=	$(SRC_FILE:.c=.o)
 OBJS		=	$(addprefix $(OBJ_DIR)/, $(OBJ_FILE))
 
 LIBFT_DIR	=	libft
-LIBFT_LIB	=	libft.a #assuming project is named the same
-LIBFT_INC	=	#includes directory, if applicable
+LIBFT_LIB	=	libft.a
+LIBFT_INC	=	inc
 LIBFT		=	$(LIBFT_DIR)/$(LIBFT_LIB)
 
 INC_DIR		=	-I $(LIBFT_DIR)/$(LIBFT_INC) -I inc
