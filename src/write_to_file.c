@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_base64.h                                        :+:      :+:    :+:   */
+/*   write_to_file.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/23 02:40:07 by irhett           ###   ########.fr       */
+/*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
+/*   Updated: 2017/08/23 02:33:38 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_BASE64_H
-# define FT_BASE64_H
+#include "ftssl.h"
 
-typedef struct s_com	t_com;
-
-typedef struct		s_b64
+int		write_to_file(char *string, char *file, char *invoker)
 {
-	int				decode:2;
-	char			*infile;
-	char			*outfile;
-	char			*string;
-	t_com			*c;
-}					t_b64;
+	int		fd;
 
-void				*base64_p(t_com *command, int argc, char **argv);
-int					base64_e(t_com *command, void *data_t_b64);
-void				base64_u(t_com *command);
-
-void				*destroy_t_b64(t_b64 *data);
-
-#endif
+	fd = open(file, O_WRONLY | O_CREAT);
+	if (fd < 0)
+		return (com_err_3(invoker, "unable to open file '", file, "'"));
+	if ((write(fd, string, ft_strlen(string))) == -1)
+		return (com_err_3(invoker, "unable to write to file '", file, "'"));
+	return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/23 01:31:06 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/23 02:33:08 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,7 @@ int					call_command(t_com *command, int argc, char **argv);
 int					com_err(char *command, char *err);
 int					com_err_2(char *command, char *err, char *val);
 int					com_err_3(char *command, char *err, char *val, char *end);
+
+int					write_to_file(char *string, char *file, char *invoker);
 
 #endif

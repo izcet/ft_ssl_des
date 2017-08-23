@@ -6,14 +6,15 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:55:31 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/22 17:56:16 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/23 02:53:44 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-void	*desecb_p(int argc, char **argv)
+void	*desecb_p(t_com *command, int argc, char **argv)
 {
+	(void)command;
 	(void)argc;
 	(void)argv;
 	return (NULL);
