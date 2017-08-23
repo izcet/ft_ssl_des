@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/23 03:41:43 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/23 04:10:48 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,47 @@ static char		*base64_encode(char *string, char *key)
 	return (encoded);
 }
 
-static char		*base64_decode(char *string, char *key)
+static void		four_to_three(char *str, char *enc, char *key)
 {
-	(void)string;
-	(void)key;
-	return (NULL);
+	int		i;
+	int		c_i;
+	char	c[4];
+
+	i = -1;
+	while (++i < 64)
+	{
+		c_i = -1;
+		while (++c_i < 4)
+			if (enc[c_i] == key[i])
+				c[c_i] = i;
+	}
+	i = -1;
+	while (++i < 4)
+		if (enc[i] == '=')
+			c[i] = 0;
+	str[0] = (c[0] << 2) | (c[1] >> 4);
+	str[1] = ((c[1] & 15) << 4) | (c[2] >> 2);
+	str[2] = ((c[2] & 3) << 6) | c[3];
+}
+
+static char		*base64_decode(char *encoded, char *key)
+{
+	unsigned int	len;
+	unsigned int	i;
+	char			*str;
+
+	len = (ft_strlen(encoded) / 4) * 3;
+	str = ft_strnew(len);
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		four_to_three(&(str[i]), encoded, key);
+		i += 3;
+		encoded += 4;
+	}
+	return (str);
 }
 
 int				base64_e(t_com *command, void *data_t_b64)
@@ -81,7 +117,7 @@ int				base64_e(t_com *command, void *data_t_b64)
 	if (data->outfile)
 		ret = write_to_file(string, data->outfile, command->name);
 	else
-		ft_putendl(string);
+		ft_putstr(string);
 	free(key);
 	free(string);
 	destroy_t_b64(data);

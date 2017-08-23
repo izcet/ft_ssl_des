@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:52:32 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/23 01:44:54 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/23 03:54:21 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_wrap			*init_commands(void)
 	ft_bzero(wrapper, sizeof(t_wrap) * NUM_COMMAND_TYPES);
 	set_wrapper(&(wrapper[0]), "Standard", 0);
 	set_wrapper(&(wrapper[1]), "Message Digest", 0);
-	set_wrapper(&(wrapper[2]), "Cipher", 3);
+	set_wrapper(&(wrapper[2]), "Cipher", 4);
 	populate_lists(wrapper);
 	return (wrapper);
 }
