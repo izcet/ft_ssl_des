@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 18:40:51 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/22 17:10:53 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/23 01:43:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int		call_command(t_com *command, int argc, char **argv)
 		data = ((void *(*)(int, char **))(command->parse))(argc, argv);
 		if (data)
 		{
-			//printf("%p\n", data);
 			ret = ((int (*)(t_com *, void *))(command->exec))(command, data);
 		}
 		else

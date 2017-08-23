@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:52:32 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/22 17:19:10 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/23 01:44:54 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,10 @@ static void		init_com(t_com *c, char *name, t_point *functions)
 static void		populate_lists(t_wrap *c)
 {
 	ASSIGN(2, 0, "base64", base64_p, base64_e, base64_u);
-	ASSIGN(2, 1, "des", NULL, NULL, NULL); //desecb_p, _e, _u
-	ASSIGN(2, 2, "des-ecb", NULL, NULL, NULL); //desecb_p, _e, _u
+	ASSIGN(2, 1, "des", desecb_p, desecb_e, desecb_u);
+	ASSIGN(2, 2, "des-ecb", desecb_p, desecb_e, desecb_u);
 	ASSIGN(2, 3, "dec-cbc", NULL, NULL, NULL); // desecb_p? descbc_e, descbc_u
 }
-
 
 static void		set_wrapper(t_wrap *wrapper, char *name, unsigned int num)
 {

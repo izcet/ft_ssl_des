@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:34:40 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/21 21:35:00 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/23 01:41:42 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	get_index(char *name, t_wrap *commands, int type_index)
 	return (-1);
 }
 
-int		interpret(char *name, int argc, char **argv, t_wrap *commands)
+int			interpret(char *name, int argc, char **argv, t_wrap *commands)
 {
 	int		type_index;
 	int		index;

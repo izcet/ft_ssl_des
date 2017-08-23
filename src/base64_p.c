@@ -6,13 +6,14 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:28:08 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/23 01:38:10 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/23 01:55:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
 #define PARSE_RESET(foo, bar) if (foo) free (foo); foo = bar
+#define FEQ ft_equals
 
 static int	read_data(t_b64 *data)
 {
@@ -42,6 +43,8 @@ static int	read_data(t_b64 *data)
 
 static int	parse_done(int argc, char **argv, int i, t_b64 *data)
 {
+	if (i + 1 >= argc)
+		return (com_err_2("base64", "option requires an argument: ", argv[i]));
 	if (ft_equals(argv[i], "--"))
 	{
 		if (i + 1 < argc)
@@ -73,11 +76,8 @@ static int	parse_flags(int argc, char **argv, t_b64 *data)
 			data->decode = 0;
 		else if (ft_equals(argv[i], "-d"))
 			data->decode = 1;
-		else if (ft_equals(argv[i], "-i") || ft_equals(argv[i], "-o"))
+		else if ((argc < i + 1) && (FEQ(argv[i], "-i") | FEQ(argv[i], "-o")))
 		{
-			if (i + 1 >= argc)
-				return (com_err_2("base64", "option requires an argument: ", 
-							argv[i]));
 			if (ft_equals(argv[i], "-i"))
 			{
 				PARSE_RESET(data->infile, ft_strdup(argv[i + 1]));
