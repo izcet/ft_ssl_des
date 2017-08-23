@@ -55,9 +55,10 @@ static void		init_com(t_com *c, char *name, t_point *functions)
 
 static void		populate_lists(t_wrap *c)
 {
-	ASSIGN(2, 0, "base64", NULL, NULL, NULL);
-	ASSIGN(2, 1, "des-ecb", NULL, NULL, NULL);
-	ASSIGN(2, 2, "dec-cbc", NULL, NULL, NULL);
+	ASSIGN(2, 0, "base64", base64_p, base64_e, base64_u);
+	ASSIGN(2, 1, "des", NULL, NULL, NULL);
+	ASSIGN(2, 2, "des-ecb", NULL, NULL, NULL);
+	ASSIGN(2, 3, "dec-cbc", NULL, NULL, NULL);
 }
 
 

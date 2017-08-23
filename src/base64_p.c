@@ -1,30 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   base64_p.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/21 16:25:45 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/21 21:42:12 by irhett           ###   ########.fr       */
+/*   Created: 2017/08/22 16:28:08 by irhett            #+#    #+#             */
+/*   Updated: 2017/08/22 17:11:05 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-int		main(int argc, char **argv)
+void		*base64_p(int argc, char **argv)
 {
-	t_wrap		*commands;
-	int			ret;
+	printf("calling base64 parser\n");
+	(void)argv;
 
-	ret = 0;
-	commands = NULL;
-	if (argc < 2)
-		return (ft_usage("ft_ssl", "command [command opts] [command args]"));
-	commands = init_commands();
-	if (!commands)
-		return (ft_error("Insufficient memory to allocate command struct."));
-	ret = interpret(argv[1], argc, argv, commands);
-	delete_commands(commands);
-	return (ret);
+	t_b64	*data;
+
+	data = (t_b64*)malloc(sizeof(t_b64));
+	if (!data)
+		return (NULL);
+
+
+	if (argc % 2)
+	{
+		free(data);
+		return (NULL);
+	}
+	//printf("%p %p\n", data, (void*)data);
+	return ((void *)data);
 }

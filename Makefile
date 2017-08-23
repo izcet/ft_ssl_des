@@ -18,6 +18,7 @@ FLAGS		=	$(CFLAGS) $(XFLAGS)
 
 SRC_DIR		=	src
 SRC_FILE	=	main.c interpret.c init_commands.c commands.c call_command.c \
+				base64_p.c base64_e.c base64_u.c
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
 

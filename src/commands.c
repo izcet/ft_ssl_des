@@ -38,11 +38,18 @@ void		delete_commands(t_wrap *commands)
 	free(commands);
 }
 
-void		print_command_list(t_wrap *commands)
+void		print_command_list(t_wrap *commands, char *error)
 {
 	unsigned int	type_i;
 	unsigned int	comm_i;
 
+	if (error)
+	{
+		ft_putstr_fd("ft_ssl: Error: '", 2);
+		ft_putstr_fd(error, 2);
+		ft_putendl_fd("' is an invalid command.", 2);
+		ft_putchar('\n');
+	}
 	type_i = 0;
 	while (type_i < NUM_COMMAND_TYPES)
 	{
@@ -51,8 +58,7 @@ void		print_command_list(t_wrap *commands)
 		comm_i = 0;
 		while (comm_i < commands[type_i].num)
 			ft_putendl(commands[type_i].list[comm_i++].name);
-		if (type_i < NUM_COMMAND_TYPES - 1)
-			ft_putchar('\n');
+		ft_putchar('\n');
 		type_i++;
 	}
 }

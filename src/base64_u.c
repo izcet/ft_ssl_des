@@ -1,30 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   base64_u.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/21 16:25:45 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/21 21:42:12 by irhett           ###   ########.fr       */
+/*   Created: 2017/08/22 16:39:18 by irhett            #+#    #+#             */
+/*   Updated: 2017/08/22 16:46:41 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-int		main(int argc, char **argv)
+void		base64_u(t_com *command)
 {
-	t_wrap		*commands;
-	int			ret;
-
-	ret = 0;
-	commands = NULL;
-	if (argc < 2)
-		return (ft_usage("ft_ssl", "command [command opts] [command args]"));
-	commands = init_commands();
-	if (!commands)
-		return (ft_error("Insufficient memory to allocate command struct."));
-	ret = interpret(argv[1], argc, argv, commands);
-	delete_commands(commands);
-	return (ret);
+	(void)command;
+	ft_putendl("base64: Usage: [-e | -d] [-i infile] [-o outfile]");
+	ft_putendl("  -e, encode (default behavior)");
+	ft_putendl("  -d, decode");
+	ft_putendl("  -i, input file (\"-\" or default: stdin)");
+	ft_putendl("  -o, output file (\"-\" or default: stdout)");
 }

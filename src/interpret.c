@@ -27,23 +27,26 @@ static int	get_index(char *name, t_wrap *commands, int type_index)
 	return (-1);
 }
 
-void		interpret(char *name, int argc, char **argv, t_wrap *commands)
+int		interpret(char *name, int argc, char **argv, t_wrap *commands)
 {
 	int		type_index;
-	int		command_index;
+	int		index;
+	int		ret;
 
 	type_index = 0;
-	command_index = -1;
-	while (type_index < NUM_COMMAND_TYPES && command_index < 0)
+	index = -1;
+	ret = 0;
+	while (type_index < NUM_COMMAND_TYPES && index < 0)
 	{
-		command_index = get_index(name, commands, type_index);
-		if (command_index == -1)
+		index = get_index(name, commands, type_index);
+		if (index == -1)
 			type_index++;
 	}
 	if (type_index == NUM_COMMAND_TYPES)
-		print_command_list(commands);
+		print_command_list(commands, name);
 	else
 	{
-		call_command(commands[type_index].list[command_index], argc, argv);
+		ret = call_command(&(commands[type_index].list[index]), argc, argv);
 	}
+	return (ret);
 }

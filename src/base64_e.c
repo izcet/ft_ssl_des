@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   base64_e.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/21 16:25:45 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/21 21:42:12 by irhett           ###   ########.fr       */
+/*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
+/*   Updated: 2017/08/22 17:11:10 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-int		main(int argc, char **argv)
+int			base64_e(t_com *command, void *data_t_b64)
 {
-	t_wrap		*commands;
-	int			ret;
+	t_b64	*data;
 
-	ret = 0;
-	commands = NULL;
-	if (argc < 2)
-		return (ft_usage("ft_ssl", "command [command opts] [command args]"));
-	commands = init_commands();
-	if (!commands)
-		return (ft_error("Insufficient memory to allocate command struct."));
-	ret = interpret(argv[1], argc, argv, commands);
-	delete_commands(commands);
-	return (ret);
+	data = (t_b64*)data_t_b64;
+	printf("calling base64 execution.\n");
+	(void)command;
+	//printf("%p %p\n", data_t_b64, data);
+	free(data_t_b64);
+	return (0);
 }
