@@ -6,7 +6,7 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 16:16:13 by irhett            #+#    #+#              #
-#    Updated: 2017/08/27 15:16:39 by irhett           ###   ########.fr        #
+#    Updated: 2017/08/27 16:19:42 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRC_FILE	=	main.c interpret.c init_commands.c commands.c call_command.c \
 				desecb_p.c desecb_e.c desecb_u.c \
 				descbc_p.c descbc_e.c descbc_u.c \
 				command_error.c write_to_file.c \
-				des_init_final_perm.c \
+				des_block_perm.c \
 
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
