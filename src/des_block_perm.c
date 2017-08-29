@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   des_init_final_perm.c                              :+:      :+:    :+:   */
+/*   des_block_perm.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 15:09:14 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/27 15:50:54 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/28 17:34:40 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void		perm_operate_init(char *bits, char c, char index)
 	while (i < 8)
 	{
 		if (c & (1 << i))
-			bits[i] = bits[i] | (1 << index);
+			bits[(int)i] = bits[(int)i] | (1 << index);
 		i++;
 	}
 }
@@ -47,7 +47,7 @@ static void		perm_operate_final(char *bits, char *eight, char index)
 	i = 0;
 	while (i < 8)
 	{
-		if (eight[i] & (1 << index))
+		if (eight[(int)i] & (1 << index))
 			*bits = *bits & (1 << i);
 		i++;
 	}
@@ -57,13 +57,13 @@ void			des_final_perm(char *eight)
 {
 	char	bits[8] = {0, 0, 0, 0, 0, 0, 0, 0};
 
-	perm_operate_final(&(bits[0], eight, 6));
-	perm_operate_final(&(bits[1], eight, 4));
-	perm_operate_final(&(bits[2], eight, 2));
-	perm_operate_final(&(bits[3], eight, 0));
-	perm_operate_final(&(bits[4], eight, 7));
-	perm_operate_final(&(bits[5], eight, 5));
-	perm_operate_final(&(bits[6], eight, 3));
-	perm_operate_final(&(bits[7], eight, 1));
+	perm_operate_final(&(bits[0]), eight, 6);
+	perm_operate_final(&(bits[1]), eight, 4);
+	perm_operate_final(&(bits[2]), eight, 2);
+	perm_operate_final(&(bits[3]), eight, 0);
+	perm_operate_final(&(bits[4]), eight, 7);
+	perm_operate_final(&(bits[5]), eight, 5);
+	perm_operate_final(&(bits[6]), eight, 3);
+	perm_operate_final(&(bits[7]), eight, 1);
 	ft_strncpy(eight, bits, 8);
 }

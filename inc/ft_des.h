@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/28 17:23:06 by irhett           ###   ########.fr       */
+/*   Updated: 2017/08/28 17:30:37 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ void				descbc_u(t_com *command);
 
 void				des_init_perm(char *eight);
 void				des_final_perm(char *eight);
+
+char				des_sbox_lookup(char sixbits, char *box);
 
 #endif
