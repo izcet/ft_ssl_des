@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:17 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/28 17:35:04 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/01 19:14:57 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,9 @@ char	des_sbox_lookup(char sixbits, char *box)
 	index += (sixbits & 1) * 16;
 	index += ((sixbits >> 1) & 15);
 	return (box[(int)index]);
+}
+
+char	*des_sbox_sub(char *str)
+{
+
 }
