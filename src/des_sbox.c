@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:17 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/01 19:14:57 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/02 19:55:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** Output char should be 4 bits of data.
 */
 
-char	des_sbox_lookup(char sixbits, char *box)
+char	des_sbox(char sixbits, char *box)
 {
 	char	index;
 
@@ -28,7 +28,26 @@ char	des_sbox_lookup(char sixbits, char *box)
 	return (box[(int)index]);
 }
 
-char	*des_sbox_sub(char *str)
-{
+/*
+** Input should be an array of 6 chars * 8 bits
+** 		48 bits total
+** Output should be an array of 4 chars * 8 bits
+** 		32 bits total
+*/
 
+char	*des_sbox_sub(char *six)
+{
+	char	*four;
+
+	four = (char*)malloc(sizeof(char) * 4);
+	if (!four)
+		return (NULL);
+	four[0] = des_sbox(six[0] >> 2, g_des_sbox_1) << 4;
+	four[0] += des_sbox(((six[0] & 3) << 4) + (six[1] >> 4), g_des_sbox_2);
+	four[1] = des_sbox(((six[1] & 15) << 2) + (six[2] >> 6), g_des_sbox_3) << 4;
+	four[1] += des_sbox(six[2] & 63, g_des_sbox_4);
+	four[2] = des_sbox(six[3] >> 2, g_des_sbox_5) << 4;
+	four[2] += des_sbox(((six[3] & 3) << 4) + (six[4] >> 4), g_des_sbox_6);
+	four[3] = des_sbox(((six[4] & 15) << 2) + (six[5] >> 6), g_des_sbox_7) << 4;
+	four[3] += des_sbox(six[5] & 63, g_des_sbox_8);
 }
