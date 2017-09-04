@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/02 23:43:39 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/03 18:51:11 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,7 @@ char				des_sbox(char sixbits, char *box);
 char				*des_sbox_sub(char *bits);
 
 char				*des_xor(char *str, char *other, int len);
+
+char				*des_key_init(char *eight);
 
 #endif
