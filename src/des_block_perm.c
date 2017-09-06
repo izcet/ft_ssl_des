@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 15:09:14 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/28 17:34:40 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/05 23:03:30 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ static void		perm_operate_init(char *bits, char c, char index)
 
 void			des_init_perm(char *eight)
 {
-	char	bits[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+	char	*bits;
 
+	bits = (char[8]){0, 0, 0, 0, 0, 0, 0, 0};
 	perm_operate_init(bits, eight[0], 6);
 	perm_operate_init(bits, eight[1], 4);
 	perm_operate_init(bits, eight[2], 2);
@@ -55,8 +56,9 @@ static void		perm_operate_final(char *bits, char *eight, char index)
 
 void			des_final_perm(char *eight)
 {
-	char	bits[8] = {0, 0, 0, 0, 0, 0, 0, 0};
+	char	*bits;
 
+	bits = (char[8]){0, 0, 0, 0, 0, 0, 0, 0};
 	perm_operate_final(&(bits[0]), eight, 6);
 	perm_operate_final(&(bits[1]), eight, 4);
 	perm_operate_final(&(bits[2]), eight, 2);

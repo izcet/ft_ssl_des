@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:17 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/02 19:55:33 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/05 20:54:46 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,6 @@ char	*des_sbox_sub(char *six)
 	four[2] += des_sbox(((six[3] & 3) << 4) + (six[4] >> 4), g_des_sbox_6);
 	four[3] = des_sbox(((six[4] & 15) << 2) + (six[5] >> 6), g_des_sbox_7) << 4;
 	four[3] += des_sbox(six[5] & 63, g_des_sbox_8);
+	free(six);
+	return (four);
 }

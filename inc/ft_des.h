@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/03 18:51:11 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/05 23:14:34 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ static char				g_des_sbox_8[64] = {
 	7, 11, 4, 1, 9, 12, 14, 2, 0, 6, 10, 13, 15, 3, 5, 8,
 	2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11 };
 
-static char				g_des_rounds[16] = {
+static char				g_des_key_enc[16] = {
 	1, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1};
+static char				g_des_key_dec[16] = {
+	0, 1, 2, 2, 2, 2, 2, 2, 1, 2, 2, 2, 2, 2, 2, 1};
 
 void				*desecb_p(t_com *command, int argc, char **argv);
 int					desecb_e(t_com *command, void *data_t_des);
@@ -84,6 +86,14 @@ char				*des_sbox_sub(char *bits);
 
 char				*des_xor(char *str, char *other, int len);
 
-char				*des_key_init(char *eight);
+/*
+** counter used here should always called with a -1
+** this is simply a norm hack, not significant
+*/
+char				*des_key_reduction(char *eight, int counter);
+void				des_key_r_rot(char *key, int num);
+void				des_key_l_rot(char *key, int num);
+char				*des_get_subkey(char *key);
+
 
 #endif
