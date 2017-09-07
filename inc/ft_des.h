@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/05 23:14:34 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/06 18:49:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,11 @@ void				des_key_r_rot(char *key, int num);
 void				des_key_l_rot(char *key, int num);
 char				*des_get_subkey(char *key);
 
+/*
+** right remains untouched
+** left is modified by xor
+** retain their original positions, not swapped
+*/
+void				des_round(char *left, char *right, char *subkey);
 
 #endif
