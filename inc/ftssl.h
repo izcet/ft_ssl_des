@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/06 18:50:24 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/08 16:45:17 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ int					write_to_file(char *string, char *file, char *invoker);
 
 void				swap_ptr(void *a, void *b);
 void				swap_int(int *a, int *b);
+
+char				get_hex_val(char big, char smol);
 
 #endif

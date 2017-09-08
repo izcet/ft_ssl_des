@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/06 18:49:56 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/08 16:44:48 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ typedef struct		s_des
 	char			*infile;
 	char			*outfile;
 	char			*key;
+	char			keylen; // 8 for 1 key, 24 for 3 keys
+	char			*iv;
 }					t_des;
 
 typedef struct s_com	t_com;
