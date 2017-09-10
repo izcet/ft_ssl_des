@@ -6,13 +6,13 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:28:08 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/23 03:37:55 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/09 19:45:14 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-#define PARSE_RESET(foo, bar) if (foo) free (foo); foo = bar
+#define PARSE_RESET(foo, bar) if (foo) free(foo); foo = bar
 #define FEQ ft_equals
 
 static int	read_data(t_com *c, t_b64 *data)

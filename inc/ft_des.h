@@ -6,12 +6,14 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/08 16:44:48 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/09 20:27:19 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_DES_H
 # define FT_DES_H
+
+typedef struct s_com	t_com;
 
 typedef struct		s_des
 {
@@ -21,10 +23,10 @@ typedef struct		s_des
 	char			*outfile;
 	char			*key;
 	char			keylen; // 8 for 1 key, 24 for 3 keys
+	int				v:2;
 	char			*iv;
+	t_com			*c;
 }					t_des;
-
-typedef struct s_com	t_com;
 
 static char				g_des_sbox_1[64] = {
 	14, 4, 13, 1, 2, 15, 11, 8, 3, 10, 6, 12, 5, 9, 0, 7,
@@ -79,6 +81,10 @@ void				desecb_u(t_com *command);
 void				*descbc_p(t_com *command, int argc, char **argv);
 int					descbc_e(t_com *command, void *data_t_des);
 void				descbc_u(t_com *command);
+
+void				*destroy_t_des(t_des *data);
+int					des_validate_key(t_des *data);
+int					des_validate_iv(t_des *data);
 
 void				des_init_perm(char *eight);
 void				des_final_perm(char *eight);

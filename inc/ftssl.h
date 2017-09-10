@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/08 16:45:17 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/09 23:47:16 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FTSSL_H
 
 # include <fcntl.h>
+# include <pwd.h>
 
 # include "libft.h"
 
@@ -56,5 +57,6 @@ void				swap_ptr(void *a, void *b);
 void				swap_int(int *a, int *b);
 
 char				get_hex_val(char big, char smol);
+int					ft_ishex(char c);
 
 #endif
