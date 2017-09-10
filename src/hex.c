@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 16:33:25 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/08 16:39:03 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/09 16:26:32 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,4 @@ char	get_hex_val(char big, char smol)
 	else
 		ret += 16 * (10 + (ft_toupper(big) - 'A'));
 	return (ret);
-}
-
 }

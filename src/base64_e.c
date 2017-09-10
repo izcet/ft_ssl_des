@@ -6,13 +6,13 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/08/23 04:10:48 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/09 17:25:04 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-#define KEY64 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+//#define KEY64 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 
 static void		three_to_four(char *str, char *key, char *enc)
 {
@@ -33,7 +33,7 @@ static void		three_to_four(char *str, char *key, char *enc)
 	enc[3] = past_done ? '=' : key[str[i] & 63];
 }
 
-static char		*base64_encode(char *string, char *key)
+char			*base64_encode(char *string, char *key)
 {
 	unsigned int	i;
 	unsigned int	len;
@@ -44,7 +44,7 @@ static char		*base64_encode(char *string, char *key)
 	i = 0;
 	len = ft_strlen(string);
 	enc_len = (((len + 2) / 3) * 4);
-	encoded = (char *)malloc(sizeof(char) * (enc_len + 1));
+	encoded = ft_strnew(enc_len);
 	if (!encoded)
 		return (NULL);
 	enc_i = 0;
@@ -80,7 +80,7 @@ static void		four_to_three(char *str, char *enc, char *key)
 	str[2] = ((c[2] & 3) << 6) | c[3];
 }
 
-static char		*base64_decode(char *encoded, char *key)
+char			*base64_decode(char *encoded, char *key)
 {
 	unsigned int	len;
 	unsigned int	i;
@@ -105,20 +105,17 @@ int				base64_e(t_com *command, void *data_t_b64)
 	t_b64	*data;
 	char	*string;
 	int		ret;
-	char	*key;
 
 	data = (t_b64*)data_t_b64;
-	key = ft_strdup(KEY64);
 	if (data->decode)
-		string = base64_decode(data->string, key);
+		string = base64_decode(data->string, BASE64_KEY);
 	else
-		string = base64_encode(data->string, key);
+		string = base64_encode(data->string, BASE64_KEY);
 	ret = 0;
 	if (data->outfile)
 		ret = write_to_file(string, data->outfile, command->name);
 	else
-		ft_putstr(string);
-	free(key);
+		ft_putendl(string);
 	free(string);
 	destroy_t_b64(data);
 	return (ret);
