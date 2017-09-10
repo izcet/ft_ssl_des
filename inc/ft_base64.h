@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/09 17:30:12 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/10 00:53:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # define KY64 "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
 # define BASE64_KEY KY64
-
 
 typedef struct s_com	t_com;
 
@@ -27,8 +26,6 @@ typedef struct		s_b64
 	char			*string;
 	t_com			*c;
 }					t_b64;
-
-
 
 void				*base64_p(t_com *command, int argc, char **argv);
 int					base64_e(t_com *command, void *data_t_b64);

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:55:31 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/09 20:39:29 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/10 00:54:14 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ static int	parse_flags(int argc, char **a, t_des *d)
 		}
 		else
 			WHOOPS;
-		i++;
 	}
 	return (0);
 }
