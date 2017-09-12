@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/12 12:52:44 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/12 12:58:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,9 @@ void				*descbc_p(t_com *command, int argc, char **argv);
 int					descbc_e(t_com *command, void *data_t_des);
 void				descbc_u(t_com *command);
 
+t_des				*create_t_des(t_com *command, int keylen);
 void				*destroy_t_des(t_des *data);
+int					des_parse(int argc, char **argv, t_des *data);
 int					des_validate_key(t_des *data);
 int					des_validate_iv(t_des *data);
 
