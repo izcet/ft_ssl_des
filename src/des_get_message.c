@@ -41,8 +41,11 @@ char	*des_get_message(t_des *data)
 {
 	char			*first;
 	char			*final;
-//	char			*temp;
+	char			*temp_one;
+	char			*temp_two;
 	unsigned int	len;
+	unsigned int	i;
+	unsigned int	j;
 
 	len = 0;
 	first = read_data(data->infile, data->c->name, &len);
@@ -53,6 +56,36 @@ char	*des_get_message(t_des *data)
 		first = final;
 	}
 	final = ft_strnew(0);
-	
+	i = 0;
+	temp_one = ft_strnew(8);
+	while (i < len)
+	{
+		j = 0;
+		while ((j < 8) && (i + j < len))
+		{
+			temp_one[j] = first[i + j];
+			j++;
+		}
+		while (j < 8)
+			temp_one[j++] = '\0';
+		i += j;
+		if (data->iv)
+			des_xor(temp_one, data->iv, 8);
+		temp_two = des_sixteen(temp_one, data->key, data->decode);
+		if (data->iv)
+		{
+			free(data->iv);
+			data->iv = ft_strdup(temp_two);
+		}
+		final = gnl_concat(final, temp_two, 1, 1);
+	}
+	free(temp_one);
+	free(first);
+	if (data->base64 && !data->decode)
+	{
+		first = base64_encode(final, BASE64_KEY, i);
+		free(final);
+		final = first;
+	}
 	return (final);
 }

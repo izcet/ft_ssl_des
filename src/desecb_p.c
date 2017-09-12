@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:55:31 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/10 00:54:14 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/11 22:34:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ static int	parse_flags(int argc, char **a, t_des *d)
 			d->decode = 1;
 		else if (ft_equals(a[i], "-a"))
 			d->base64 = 1;
-		else if (argc < i + 1)
+		else if (argc > i + 1)
 		{
+			// update this section to more closely align with the base64 parsing
+			// make sure these flags have a value
+			// make sure values line up correctly
 			if (!is_flag(a[i], "-i", a[i + 1], d->infile))
 				if (!is_flag(a[i], "-o", a[i + 1], d->outfile))
 					if (!is_flag(a[i], "-k", a[i + 1], d->key))
