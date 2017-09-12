@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/09 23:47:16 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/11 20:16:29 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int					com_err_2(char *command, char *err, char *val);
 int					com_err_3(char *command, char *err, char *val, char *end);
 
 int					write_to_file(char *string, char *file, char *invoker);
+char				*read_data(char *file, char *invoker, unsigned int *len);
 
 void				swap_ptr(void *a, void *b);
 void				swap_int(int *a, int *b);

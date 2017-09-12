@@ -6,7 +6,7 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/12 20:58:56 by irhett            #+#    #+#              #
-#    Updated: 2017/08/23 02:49:07 by irhett           ###   ########.fr        #
+#    Updated: 2017/09/11 21:49:56 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ SRC_FILE	=	ft_atoi.c ft_bubblesort_intarr.c ft_bzero.c ft_findbiggest.c \
 				ft_error.c ft_usage.c t_int_matrix.c t_dub_matrix.c \
 				ft_dot_product.c mult_int_matrix.c mult_dub_matrix.c \
 				get_col_from_arr.c plus_matrix_scalar.c ft_itoa_base.c \
-				ft_pow.c ft_numlen.c ft_equals.c
+				ft_pow.c ft_numlen.c ft_equals.c ft_strndup.c
 SRC_DIR		= 	src/
 SRCS		=	$(addprefix $(SRC_DIR), $(SRC_FILE))
 OBJ_FILE	=	$(SRC_FILE:.c=.o)
@@ -55,10 +55,10 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)%.c | $(OBJ_DIR)
 	@$(CC) $(FLAGS) $(INC_DIR) $^ -o $@
 
 clean:
-	@rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@rm -f libft.a
+	rm -f libft.a
 
 re:	fclean all
 

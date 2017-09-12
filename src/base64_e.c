@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/09 20:04:59 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/11 22:06:04 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,14 @@ static void		three_to_four(char *str, char *key, char *enc)
 	enc[3] = past_done ? '=' : key[str[i] & 63];
 }
 
-char			*base64_encode(char *string, char *key)
+char			*base64_encode(char *string, char *key, unsigned int len)
 {
 	unsigned int	i;
-	unsigned int	len;
 	unsigned int	enc_i;
 	unsigned int	enc_len;
 	char			*encoded;
 
 	i = 0;
-	len = ft_strlen(string);
 	enc_len = (((len + 2) / 3) * 4);
 	encoded = ft_strnew(enc_len);
 	if (!encoded)
@@ -108,12 +106,12 @@ int				base64_e(t_com *command, void *data_t_b64)
 	if (data->decode)
 		string = base64_decode(data->string, BASE64_KEY);
 	else
-		string = base64_encode(data->string, BASE64_KEY);
+		string = base64_encode(data->string, BASE64_KEY, data->strlen);
 	ret = 0;
 	if (data->outfile)
 		ret = write_to_file(string, data->outfile, command->name);
 	else
-		ft_putendl(string);
+		ft_putstr(string);
 	free(string);
 	destroy_t_b64(data);
 	return (ret);

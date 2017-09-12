@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/09 20:27:19 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/11 18:11:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ char				*des_get_subkey(char *key);
 ** retain their original positions, not swapped
 */
 void				des_round(char *left, char *right, char *subkey);
+char				*des_get_message(t_des *data);
 
 #endif

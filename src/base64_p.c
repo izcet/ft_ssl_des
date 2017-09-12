@@ -15,28 +15,6 @@
 #define PARSE_RESET(foo, bar) if (foo) free(foo); foo = bar
 #define FEQ ft_equals
 
-static int	read_data(t_com *c, t_b64 *data)
-{
-	int		fd;
-	int		ret;
-	char	line[65];
-
-	fd = 0;
-	if (data->infile && !ft_equals(data->infile, "-"))
-		fd = open(data->infile, O_RDONLY);
-	if (fd < 0)
-		return (com_err_3(c->name, "can't open file: '", data->infile, "'"));
-	ft_bzero(line, sizeof(char) * 65);
-	while ((ret = read(fd, line, 64) > 0))
-	{
-		data->string = gnl_concat(data->string, line, 1, 0);
-		ft_bzero(line, sizeof(char) * 65);
-	}
-	if (ret < 0)
-		return (com_err_3(c->name, "can't read file: '", data->infile, "'"));
-	return (0);
-}
-
 static int	parse_done(int argc, char **argv, int i, t_b64 *d)
 {
 	if (ft_equals(argv[i], "-i") || ft_equals(argv[i], "-o"))
@@ -72,7 +50,7 @@ static int	parse_flags(int argc, char **argv, t_b64 *data)
 			data->decode = 0;
 		else if (ft_equals(argv[i], "-d"))
 			data->decode = 1;
-		else if ((argc < i + 1) && (FEQ(argv[i], "-i") | FEQ(argv[i], "-o")))
+		else if ((argc > i + 1) && (FEQ(argv[i], "-i") | FEQ(argv[i], "-o")))
 		{
 			if (ft_equals(argv[i], "-i"))
 			{
@@ -116,10 +94,12 @@ void		*base64_p(t_com *command, int argc, char **argv)
 	data->infile = NULL;
 	data->outfile = NULL;
 	data->string = ft_strnew(0);
+	data->strlen = 0;
 	data->c = command;
 	if (parse_flags(argc, argv, data))
 		return (destroy_t_b64(data));
-	if (read_data(command, data))
+	data->string = read_data(data->infile, command->name, &(data->strlen));
+	if (data->string == NULL)
 		return (destroy_t_b64(data));
 	return ((void *)data);
 }

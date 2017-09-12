@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/05 23:14:55 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/11 21:57:10 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,6 @@ void	des_key_l_rot(char *key, int num)
 	}
 	key[27] += ltemp;
 	key[55] += rtemp;
-	return (key);
 }
 
 /*
@@ -139,7 +138,7 @@ char	*des_get_subkey(char *key)
 	sub[1] += RSHKY(2, 16, 3) + RSHKY(0, 16, 4);
 	sub[2] += LSHKY(3, 64, 1) + LSHKY(0, 1, 6) + LSHKY(1, 1, 4);
 	sub[2] += LSHKY(0, 2, 3) + RSHKY(3, 32, 2) + RSHKY(2, 16, 2);
-	sub[2] += RSHKY(1, 8, 2) + RHSKY(0, 64, 6);
+	sub[2] += RSHKY(1, 8, 2) + RSHKY(0, 64, 6);
 	sub[3] += GETKY(5, 128) + LSHKY(6, 16, 2) + LSHKY(3, 2, 4);
 	sub[3] += LSHKY(4, 8, 1) + LSHKY(5, 2, 2) + LSHKY(6, 2, 1);
 	sub[3] += RSHKY(3, 4, 1) + GETKY(4, 1);

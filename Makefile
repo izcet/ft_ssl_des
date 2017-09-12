@@ -6,7 +6,7 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 16:16:13 by irhett            #+#    #+#              #
-#    Updated: 2017/09/09 23:44:28 by irhett           ###   ########.fr        #
+#    Updated: 2017/09/11 20:25:44 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,10 +21,10 @@ SRC_FILE	=	main.c interpret.c init_commands.c commands.c call_command.c \
 				base64_p.c base64_e.c base64_u.c \
 				desecb_p.c desecb_e.c desecb_u.c \
 				descbc_p.c descbc_e.c descbc_u.c \
-				command_error.c write_to_file.c \
-				des_block_perm.c des_validate.c \
-				des_sbox.c des_round.c des_xor.c \
-				hex.c \
+				command_error.c input_output.c \
+				des_block_perm.c des_validate.c des_get_message.c \
+				des_sbox.c des_round.c des_xor.c des_key_perm.c \
+				hex.c swap.c \
 
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))

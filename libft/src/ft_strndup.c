@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   desecb_e.c                                         :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/11 20:26:25 by irhett           ###   ########.fr       */
+/*   Created: 2017/09/11 21:48:26 by irhett            #+#    #+#             */
+/*   Updated: 2017/09/11 21:49:37 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ftssl.h"
+#include "libft.h"
 
-int		desecb_e(t_com *command, void *data_t_des)
+char	*ft_strndup(char *src, unsigned int len)
 {
-	t_des	*data;
+	char	*dst;
 
-	(void)command;
-	data = (t_des *)data_t_des;
-	free(data);
-	return (0);
+	dst = ft_strnew(len);
+	ft_strncpy(dst, src, len);
+	return (dst);
 }

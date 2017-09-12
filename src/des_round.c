@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/06 18:49:17 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/11 18:37:31 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ static char		*des_pbox_perm(char *str)
 ** left is modified by xor with temp to become the new right
 */
 
-void			des_round(char *left, char *right, char *key)
+void			des_round(char *left, char *right, char *subkey)
 {
 	char	*temp;
 
 	temp = des_expansion_perm(right);
-	temp = des_xor(temp, key, 6);
+	temp = des_xor(temp, subkey, 6);
 	temp = des_sbox_sub(temp);
 	temp = des_pbox_perm(temp);
 	left = des_xor(left, temp, 4);
