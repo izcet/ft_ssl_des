@@ -44,14 +44,14 @@ char	*read_data(char *file, char *invoker, unsigned int *len)
 	return (data);
 }
 
-int		write_to_file(char *string, char *file, char *invoker)
+int		write_to_file(char *string, char *file, char *invoker, unsigned int len)
 {
 	int		fd;
 
 	fd = open(file, O_WRONLY | O_CREAT);
 	if (fd < 0)
 		return (com_err_3(invoker, "unable to open file '", file, "'"));
-	if ((write(fd, string, ft_strlen(string))) == -1)
+	if ((write(fd, string, len)) == -1)
 		return (com_err_3(invoker, "unable to write to file '", file, "'"));
 	return (0);
 }

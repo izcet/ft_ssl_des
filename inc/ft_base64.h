@@ -33,7 +33,8 @@ int					base64_e(t_com *command, void *data_t_b64);
 void				base64_u(t_com *command);
 
 char				*base64_encode(char *string, char *key, unsigned int len);
-char				*base64_decode(char *string, char *key);
+char				*base64_decode(char *string, char *key, unsigned int *len,
+		char *caller);
 
 void				*destroy_t_b64(t_b64 *data);
 

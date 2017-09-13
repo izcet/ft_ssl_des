@@ -51,7 +51,8 @@ int					com_err(char *command, char *err);
 int					com_err_2(char *command, char *err, char *val);
 int					com_err_3(char *command, char *err, char *val, char *end);
 
-int					write_to_file(char *string, char *file, char *invoker);
+int					write_to_file(char *str, char *file, char *invoker, 
+		unsigned int len);
 char				*read_data(char *file, char *invoker, unsigned int *len);
 
 void				swap_ptr(void *a, void *b);

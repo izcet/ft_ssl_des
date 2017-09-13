@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/12 12:58:09 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 01:02:49 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_des
 	int				v:2;
 	char			*iv;
 	t_com			*c;
+	unsigned int	strlen;
 }					t_des;
 
 void				*desecb_p(t_com *command, int argc, char **argv);
@@ -57,9 +58,9 @@ char				*des_xor(char *str, char *other, int len);
 ** this is simply a norm hack, not significant
 */
 char				*des_key_reduction(char *eight, int counter);
-void				des_key_r_rot(char *key, int num);
-void				des_key_l_rot(char *key, int num);
-char				*des_get_subkey(char *key);
+void				des_key_r_rot(unsigned char *key, int num);
+void				des_key_l_rot(unsigned char *key, int num);
+char				*des_get_subkey(unsigned char *key);
 
 /*
 ** right remains untouched
