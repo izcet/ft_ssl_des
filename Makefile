@@ -6,7 +6,7 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 16:16:13 by irhett            #+#    #+#              #
-#    Updated: 2017/09/14 11:31:51 by irhett           ###   ########.fr        #
+#    Updated: 2017/09/14 14:32:48 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ FLAGS		=	$(CFLAGS) $(XFLAGS)
 
 SRC_DIR		=	src
 SRC_FILE	=	main.c interpret.c init_commands.c commands.c call_command.c \
-				base64_p.c base64_e.c base64_u.c \
+				base64_p.c base64_e.c base64_u.c base64_tools.c \
 				desecb_p.c desecb_e.c desecb_u.c \
 				descbc_p.c descbc_e.c descbc_u.c \
 				command_error.c input_output.c \

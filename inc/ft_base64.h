@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 21:56:18 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 14:38:24 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,11 @@ void				base64_u(t_com *command);
 unsigned char		*base64_encode(unsigned char *s, char *ky, unsigned int l);
 unsigned char		*base64_decode(unsigned char *s, char *ky, unsigned int *l,
 		char *caller);
+
+void				three_to_four(unsigned char *s, char *k, unsigned char *e,
+		int num);
+int					four_to_three(unsigned char *s, unsigned char *e, char *k);
+unsigned int		base64_trim(char *str);
 
 void				*destroy_t_b64(t_b64 *data);
 
