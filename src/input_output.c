@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 13:15:18 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 16:28:03 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ unsigned char	*read_data(char *file, char *name, unsigned int *len)
 		free(data);
 		return (NULL);
 	}
-	//printf("%u\n", *len);
 	return ((unsigned char *)data);
 }
 

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 10:02:55 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 16:46:12 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct		s_des
 	int				v:2;
 	unsigned char	*iv;
 	t_com			*c;
+	unsigned char	*str;
 	unsigned int	strlen;
 }					t_des;
 
@@ -75,6 +76,6 @@ unsigned char		*des_get_subkey(unsigned char *key);
 */
 void				des_round(unsigned char *left, unsigned char *right, 
 		unsigned char *subkey);
-unsigned char		*des_work(t_des *data);
+unsigned char		*des_work(t_des *data);	
 
 #endif

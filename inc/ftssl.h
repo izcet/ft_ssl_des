@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 10:04:08 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 16:49:07 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,11 @@ void				swap_int(int *a, int *b);
 
 unsigned char		get_hex_val(char big, char smol);
 int					ft_ishex(char c);
+
+unsigned char		*raw_append(unsigned char *str, unsigned char *other,
+		unsigned int strlen, unsigned int otherlen);
+unsigned char		*raw_clone(unsigned char *str, unsigned int strlen);
+unsigned char		*raw_expand(unsigned char *str, unsigned char *extra,
+		unsigned int strlen, unsigned int otherlen);
 
 #endif

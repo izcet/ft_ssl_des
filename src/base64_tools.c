@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 14:44:22 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 14:53:54 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,6 @@ unsigned int	base64_trim(char *str)
 			start++;
 		}
 		end++;
-
 	}
 	return (start);
 }
