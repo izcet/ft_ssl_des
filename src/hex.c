@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 16:33:25 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/10 00:28:41 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 22:09:00 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@
 ** :will corrupt the return value
 */
 
-char	get_hex_val(char big, char smol)
+unsigned char	get_hex_val(char big, char smol)
 {
-	char	ret;
+	unsigned char	ret;
 
 	ret = 0;
 	if (smol)

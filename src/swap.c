@@ -6,19 +6,19 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/06 18:45:20 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/06 18:46:44 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 18:38:18 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-void	swap_ptr(void *a, void *b)
+void	swap_ptr(void **a, void **b)
 {
 	void	*temp;
 
-	temp = a;
-	a = b;
-	b = temp;
+	temp = *a;
+	*a = *b;
+	*b = temp;
 }
 
 void	swap_int(int *a, int *b)

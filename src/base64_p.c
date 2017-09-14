@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:28:08 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/09 19:45:14 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 21:56:45 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void		*base64_p(t_com *command, int argc, char **argv)
 	data->decode = 0;
 	data->infile = NULL;
 	data->outfile = NULL;
-	data->string = ft_strnew(0);
+	data->string = (unsigned char *)ft_strnew(0);
 	data->strlen = 0;
 	data->c = command;
 	if (parse_flags(argc, argv, data))

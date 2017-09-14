@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/11 18:37:31 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 22:17:06 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@
 #define LSHBY(a,b,c) ((str[a] & b) << c)
 #define RSHBY(a,b,c) ((str[a] & b) >> c)
 
-static char		des_expansion(char four)
+static unsigned char	des_expansion(unsigned char four)
 {
-	char	six;
+	unsigned char	six;
 
 	six = 0;
 	six += four << 2;
@@ -29,12 +29,12 @@ static char		des_expansion(char four)
 	return (six);
 }
 
-static char		*des_expansion_perm(char *right)
+static unsigned char	*des_expansion_perm(unsigned char *right)
 {
-	char	*expanded;
-	char	temp[8];
+	unsigned char	*expanded;
+	unsigned char	temp[8];
 
-	expanded = ft_strnew(6);
+	expanded = (unsigned char *)ft_strnew(6);
 	temp[0] = des_expansion(right[0] >> 4);
 	temp[1] = des_expansion(right[0] & 15);
 	temp[2] = des_expansion(right[1] >> 4);
@@ -52,9 +52,21 @@ static char		*des_expansion_perm(char *right)
 	return (expanded);
 }
 
-static char		*des_pbox_perm(char *str)
+static void				des_raw_copy(char *dst, char *src, unsigned int len)
 {
-	char	temp[4];
+	unsigned int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		dst[i] = src[i];
+		i++;
+	}
+}
+
+static unsigned char	*des_pbox_perm(unsigned char *str)
+{
+	unsigned char	temp[4];
 
 	temp[0] = LSHBY(0, 2, 5) + LSHBY(2, 24, 1) + RSHBY(3, 16, 3);
 	temp[0] += RSHBY(2, 128, 7) + LSHBY(3, 8, 0);
@@ -68,7 +80,7 @@ static char		*des_pbox_perm(char *str)
 	temp[3] = LSHBY(0, 4, 2) + RSHBY(0, 16, 3) + LSHBY(1, 8, 3);
 	temp[3] += RSHBY(1, 32, 3) + LSHBY(2, 32, 2) + LSHBY(2, 4, 1);
 	temp[3] += LSHBY(3, 4, 3) + RSHBY(3, 128, 7);
-	ft_strncpy(str, temp, 4);
+	des_raw_copy((char *)str, (char *)temp, 4);
 	return (str);
 }
 
@@ -85,9 +97,10 @@ static char		*des_pbox_perm(char *str)
 ** left is modified by xor with temp to become the new right
 */
 
-void			des_round(char *left, char *right, char *subkey)
+void			des_round(unsigned char *left, unsigned char *right, 
+		unsigned char *subkey)
 {
-	char	*temp;
+	unsigned char	*temp;
 
 	temp = des_expansion_perm(right);
 	temp = des_xor(temp, subkey, 6);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   desecb_p.c                                         :+:      :+:    :+:   */
+/*   des_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:55:31 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/12 13:27:21 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 22:19:04 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ static int	extended_flags(int i, int argc, char **argv, t_des *d)
 	if (ft_equals(argv[i], "-o"))
 		return (is_flag(i, argc, argv, &(d->outfile)));
 	if (ft_equals(argv[i], "-k"))
-		return (is_flag(i, argc, argv, &(d->key)));
+		return (is_flag(i, argc, argv, (char **)&(d->key)));
 	if (d->v && ft_equals(argv[i], "-v"))
-		return (is_flag(i, argc, argv, &(d->iv)));
+		return (is_flag(i, argc, argv, (char **)&(d->iv)));
 	return (1);
 }
 

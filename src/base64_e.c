@@ -6,13 +6,14 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 00:30:33 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 22:03:50 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-static void		three_to_four(unsigned char *str, char *key, char *enc, int num)
+static void		three_to_four(unsigned char *str, char *key,
+		unsigned char *enc, int num)
 {
 	int		i;
 	int		past_done;
@@ -35,33 +36,33 @@ static void		three_to_four(unsigned char *str, char *key, char *enc, int num)
 	enc[3] = past_done ? '=' : key[str[i] & 63];
 }
 
-char			*base64_encode(char *str, char *key, unsigned int len)
+unsigned char	*base64_encode(unsigned char *str, char *key, unsigned int len)
 {
 	unsigned int	i;
 	unsigned int	ei;
 	unsigned int	enc_len;
-	char			*enc;
+	unsigned char	*enc;
 
 	enc_len = (((len + 2) / 3) * 4);
-	enc = ft_strnew(enc_len);
+	enc = (unsigned char *)ft_strnew(enc_len);
 	if (!enc)
 		return (NULL);
 	i = 0;
 	ei = 0;
 	while (ei < enc_len)
 	{
-		three_to_four(&(((unsigned char *)str)[i]), key, &(enc[ei]), len - i);
+		three_to_four(&(str[i]), key, &(enc[ei]), len - i);
 		ei += 4;
 		i += 3;
 	}
 	return (enc);
 }
 
-static void		four_to_three(char *str, char *enc, char *key)
+static void		four_to_three(unsigned char *str, unsigned char *enc, char *key)
 {
-	int		i;
-	int		c_i;
-	char	c[4];
+	int				i;
+	int				c_i;
+	unsigned char	c[4];
 
 	i = -1;
 	while (++i < 64)
@@ -80,38 +81,38 @@ static void		four_to_three(char *str, char *enc, char *key)
 	str[2] = ((c[2] & 3) << 6) | c[3];
 }
 
-char			*base64_decode(char *encoded, char *key, unsigned int *len,
+unsigned char	*base64_decode(unsigned char *enc, char *key, unsigned int *len,
 		char *caller)
 {
 	unsigned int	oldlen;
 	unsigned int	i;
-	char			*str;
+	unsigned char	*str;
 
-	oldlen = ft_strlen(encoded);
+	oldlen = ft_strlen((char *)enc);
 	if (oldlen % 3 != 0)
 	{
 		com_err(caller, "bad input string length.");
 		return (NULL);
 	}
-	*len = (ft_strlen(encoded) / 4) * 3;
-	str = ft_strnew(*len);
+	*len = (oldlen / 4) * 3;
+	str = (unsigned char *)ft_strnew(*len);
 	if (!str)
 		return (NULL);
 	i = 0;
 	while (i < *len)
 	{
-		four_to_three(&(str[i]), encoded, key);
+		four_to_three(&(str[i]), enc, key);
 		i += 3;
-		encoded += 4;
+		enc += 4;
 	}
 	return (str);
 }
 
 int				base64_e(t_com *c, void *data_t_b64)
 {
-	t_b64	*d;
-	char	*string;
-	int		ret;
+	t_b64			*d;
+	unsigned char	*string;
+	int				ret;
 
 	d = (t_b64*)data_t_b64;
 	if (d->decode)
@@ -119,13 +120,13 @@ int				base64_e(t_com *c, void *data_t_b64)
 	else
 	{
 		string = base64_encode(d->string, BASE64_KEY, d->strlen);
-		d->strlen = ft_strlen(string);
+		d->strlen = ft_strlen((char *)string);
 	}
 	ret = 0;
 	if (string)
 	{
 		if (d->outfile)
-			ret = write_to_file(string, d->outfile, c->name, d->strlen);
+			ret = write_to_file((char *)string, d->outfile, c->name, d->strlen);
 		else
 		{
 			write(1, string, d->strlen);

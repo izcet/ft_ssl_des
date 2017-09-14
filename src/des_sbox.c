@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:17 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/05 20:54:46 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 21:38:17 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 ** Output char should be 4 bits of data.
 */
 
-char	des_sbox(char sixbits, char *box)
+unsigned char	des_sbox(unsigned char sixbits, unsigned char *box)
 {
-	char	index;
+	unsigned char	index;
 
 	index = 0;
 	index += ((sixbits >> 5) & 1) * 32;
@@ -35,11 +35,11 @@ char	des_sbox(char sixbits, char *box)
 ** 		32 bits total
 */
 
-char	*des_sbox_sub(char *six)
+unsigned char	*des_sbox_sub(unsigned char *six)
 {
-	char	*four;
+	unsigned char	*four;
 
-	four = (char*)malloc(sizeof(char) * 4);
+	four = (unsigned char *)ft_strnew(4);
 	if (!four)
 		return (NULL);
 	four[0] = des_sbox(six[0] >> 2, g_des_sbox_1) << 4;

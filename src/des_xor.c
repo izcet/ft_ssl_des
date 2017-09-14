@@ -6,13 +6,13 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/02 21:14:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/02 21:14:54 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 21:46:37 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-char		*des_xor(char *str, char *other, int len)
+unsigned char	*des_xor(unsigned char *str, unsigned char *other, int len)
 {
 	int		i;
 

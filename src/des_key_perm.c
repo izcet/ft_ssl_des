@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 01:13:14 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/13 21:39:31 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@
 ** j should be -1 when used here
 */
 
-char	*des_key_reduction(char *eight, int j)
+unsigned char	*des_key_reduction(unsigned char *eight, int j)
 {
-	char	*seven;
+	unsigned char	*seven;
 	int		i;
 
-	seven = ft_strnew(7);
+	seven = (unsigned char *)ft_strnew(7);
 	if (!seven)
 		return (NULL);
 	while (++j < 3)
@@ -76,11 +76,11 @@ char	*des_key_reduction(char *eight, int j)
 	return (seven);
 }
 
-void	des_key_r_rot(unsigned char *key, int num)
+void			des_key_r_rot(unsigned char *key, int num)
 {
-	char	ltemp;
-	char	rtemp;
-	int		i;
+	unsigned char	ltemp;
+	unsigned char	rtemp;
+	int				i;
 
 	ltemp = key[27] << (8 - num);
 	rtemp = key[55] << (8 - num);
@@ -97,7 +97,7 @@ void	des_key_r_rot(unsigned char *key, int num)
 	key[28] += rtemp;
 }
 
-void	des_key_l_rot(unsigned char *key, int num)
+void			des_key_l_rot(unsigned char *key, int num)
 {
 	unsigned char	ltemp;
 	unsigned char	rtemp;
@@ -123,50 +123,30 @@ void	des_key_l_rot(unsigned char *key, int num)
 ** Output is 6 chars, 48 bytes
 */
 
-char	*des_get_subkey(unsigned char *key)
+unsigned char	*des_get_subkey(unsigned char *key)
 {
-	char	*sub;
+	unsigned char	*sub;
 
-	printf("making subkey\n");
-	sub = ft_strnew(6);
-	printf("%s\n", sub);
+	sub = (unsigned char *)ft_strnew(6);
 	if (!sub)
 		return (NULL);
-	printf("a\n");
 	sub[0] += LSHKY(1, 4, 5) + RSHKY(2, 128, 1) + GETKY(1, 32);
-	printf("a\n");
 	sub[0] += LSHKY(2, 1, 4) + RSHKY(0, 128, 4) + RSHKY(0, 8, 1);
-	printf("a\n");
 	sub[0] += RSHKY(0, 32, 4) + RSHKY(3, 16, 4);
-	printf("a\n");
 	sub[1] += LSHKY(1, 2, 6) + LSHKY(0, 4, 4) + LSHKY(2, 8, 2);
-	printf("a\n");
 	sub[1] += RSHKY(1, 64, 2) + LSHKY(2, 2, 2) + RSHKY(2, 16, 2);
-	printf("a\n");
 	sub[1] += RSHKY(2, 16, 3) + RSHKY(0, 16, 4);
-	printf("a\n");
 	sub[2] += LSHKY(3, 64, 1) + LSHKY(0, 1, 6) + LSHKY(1, 1, 4);
-	printf("a\n");
 	sub[2] += LSHKY(0, 2, 3) + RSHKY(3, 32, 2) + RSHKY(2, 16, 2);
-	printf("a\n");
 	sub[2] += RSHKY(1, 8, 2) + RSHKY(0, 64, 6);
-	printf("a\n");
 	sub[3] += GETKY(5, 128) + LSHKY(6, 16, 2) + LSHKY(3, 2, 4);
-	printf("a\n");
 	sub[3] += LSHKY(4, 8, 1) + LSHKY(5, 2, 2) + LSHKY(6, 2, 1);
-	printf("a\n");
 	sub[3] += RSHKY(3, 4, 1) + GETKY(4, 1);
-	printf("a\n");
 	sub[4] += LSHKY(6, 32, 2) + LSHKY(5, 8, 3) + RSHKY(4, 128, 2);
-	printf("a\n");
 	sub[4] += LSHKY(5, 1, 4) + RSHKY(4, 16, 1) + RSHKY(6, 128, 5);
-	printf("a\n");
 	sub[4] += GETKY(5, 2) + GETKY(6, 1);
-	printf("a\n");
 	sub[5] += LSHKY(4, 64, 1) + LSHKY(6, 8, 3) + LSHKY(5, 4, 3);
-	printf("a\n");
 	sub[5] += RSHKY(5, 64, 2) + RSHKY(6, 64, 3) + RSHKY(4, 16, 2);
-	printf("a\n");
 	sub[5] += RSHKY(3, 8, 2) + GETKY(3, 1);
 	return (sub);
 }
