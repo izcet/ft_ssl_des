@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 22:03:50 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 11:44:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ unsigned char	*base64_decode(unsigned char *enc, char *key, unsigned int *len,
 	unsigned char	*str;
 
 	oldlen = ft_strlen((char *)enc);
-	if (oldlen % 3 != 0)
+	if (oldlen % 4 != 0)
 	{
 		com_err(caller, "bad input string length.");
 		return (NULL);
@@ -130,7 +130,8 @@ int				base64_e(t_com *c, void *data_t_b64)
 		else
 		{
 			write(1, string, d->strlen);
-			ft_putchar('\n');
+			if (!d->decode)
+				ft_putchar('\n');
 		}
 		free(string);
 	}

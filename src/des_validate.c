@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/09 20:25:32 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 22:10:35 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 10:34:23 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void		des_rewrite_key(t_des *data, int len)
 	if (len && !data->key[len])
 	{
 		rewrite = (unsigned char *)ft_strnew(data->keylen);
+		printf(">>>>>>>>>>> %i\n", data->keylen);
 		if (rewrite)
 		{
 			i = -1;

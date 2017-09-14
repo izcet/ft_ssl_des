@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:14:30 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 22:25:04 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 11:39:44 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ unsigned char	*des_work(t_des *data)
 	len = 0;
 	first = read_data(data->infile, data->c->name, &len);
 	printf("%s %i\n", first, len);
+	data->key = des_key_reduction(data->key, -1); //fix me
 	if (data->decode && data->base64)
 	{
 		final = base64_decode(first, BASE64_KEY, &len, data->c->name);

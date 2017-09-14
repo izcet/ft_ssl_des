@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 21:39:31 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 11:24:35 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 
 unsigned char	*des_key_reduction(unsigned char *eight, int j)
 {
+	printf("REDUCE!\n");
 	unsigned char	*seven;
 	int		i;
 
@@ -80,42 +81,33 @@ void			des_key_r_rot(unsigned char *key, int num)
 {
 	unsigned char	ltemp;
 	unsigned char	rtemp;
-	int				i;
 
-	ltemp = key[27] << (8 - num);
-	rtemp = key[55] << (8 - num);
-	i = 27;
-	while (i > 0)
-	{
-		key[i] >>= (num);
-		key[i + 28] >>= (num);
-		key[i] += key[i - 1] << (8 - num);
-		key[i + 28] += key[i + 27] << (8 - num);
-		i++;
-	}
-	key[0] += ltemp;
-	key[28] += rtemp;
+	ltemp = (key[3] & ((3 << (2 + num)) & ~15)) << (4 - num);
+	rtemp = (key[6] & (3 >> (2 - num))) << (4 - num);
+	key[6] = (key[6] >> num) + (key[5] << (8 - num));
+	key[5] = (key[5] >> num) + (key[4] << (8 - num));
+	key[4] = (key[4] >> num) + (key[3] << (8 - num));
+	key[3] = (key[3] >> num) + (key[2] << (8 - num));
+	key[3] = (key[3] & ~((3 << (4 - num)) & 15)) + (rtemp);
+	key[2] = (key[2] >> num) + (key[1] << (8 - num));
+	key[1] = (key[1] >> num) + ltemp;
 }
 
 void			des_key_l_rot(unsigned char *key, int num)
 {
 	unsigned char	ltemp;
 	unsigned char	rtemp;
-	int				i;
 
-	ltemp = key[0] >> (8 - num);
-	rtemp = key[27] >> (8 - num);
-	i = 0;
-	while (i < 27)
-	{
-		key[i] <<= num;
-		key[i + 28] <<= num;
-		key[i] += key[i + 1] >> (8 - num);
-		key[i + 28] += key[i + 29] >> (8 - num);
-		i++;
-	}
-	key[27] += ltemp;
-	key[55] += rtemp;
+	ltemp = (key[0] >> (8 - num)) << 4;
+	rtemp = (key[3] & 15) >> (4 - num);
+	key[0] = (key[0] << num) + (key[1] >> (8 - num));
+	key[1] = (key[1] << num) + (key[2] >> (8 - num));
+	key[2] = (key[2] << num) + (key[3] >> (8 - num));
+	key[3] = (key[3] << num) + (key[4] >> (8 - num)); 
+	key[3] = (key[3] & ~((3 << (num + 2)) & ~15)) + (ltemp);
+	key[4] = (key[4] << num) + (key[5] >> (8 - num));
+	key[5] = (key[5] << num) + (key[6] >> (8 - num));
+	key[6] = (key[6] << num) + rtemp;
 }
 
 /*

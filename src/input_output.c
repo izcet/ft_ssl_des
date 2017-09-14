@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 22:05:09 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 13:15:18 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int			write_to_file(char *str, char *file, char *name, unsigned int len)
 {
 	int		fd;
 
-	fd = open(file, O_WRONLY | O_CREAT);
+	fd = open(file, O_WRONLY | O_CREAT, 0644);
 	if (fd < 0)
 		return (com_err_3(name, "unable to open file '", file, "'"));
 	if ((write(fd, str, len)) == -1)

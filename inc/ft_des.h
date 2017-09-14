@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 22:23:59 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/14 10:02:55 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void				des_final_perm(char *eight);
 unsigned char		des_sbox(unsigned char sixbits, unsigned char *box);
 unsigned char		*des_sbox_sub(unsigned char *bits);
 
-unsigned char		*des_xor(unsigned char *str, unsigned char *other, int len);
+void				des_xor(unsigned char *s, unsigned char *o, unsigned int l);
 
 /*
 ** counter used here should always called with a -1

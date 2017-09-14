@@ -6,14 +6,14 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 16:16:13 by irhett            #+#    #+#              #
-#    Updated: 2017/09/13 22:24:26 by irhett           ###   ########.fr        #
+#    Updated: 2017/09/14 11:31:51 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	ft_ssl
 
 CC			=	clang
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra #-g -fsanitize=address
 FLAGS		=	$(CFLAGS) $(XFLAGS)
 
 SRC_DIR		=	src
