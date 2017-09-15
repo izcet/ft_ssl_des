@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 16:46:12 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 13:52:50 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ void				des_final_perm(char *eight);
 unsigned char		des_sbox(unsigned char sixbits, unsigned char *box);
 unsigned char		*des_sbox_sub(unsigned char *bits);
 
-void				des_xor(unsigned char *s, unsigned char *o, unsigned int l);
-
 /*
 ** counter used here should always called with a -1
 ** this is simply a norm hack, not significant
@@ -69,13 +67,10 @@ void				des_key_r_rot(unsigned char *key, int num);
 void				des_key_l_rot(unsigned char *key, int num);
 unsigned char		*des_get_subkey(unsigned char *key);
 
-/*
-** right remains untouched
-** left is modified by xor
-** retain their original positions, not swapped
-*/
 void				des_round(unsigned char *left, unsigned char *right, 
 		unsigned char *subkey);
-unsigned char		*des_work(t_des *data);	
+
+unsigned char		*des_ecb_block(unsigned char *bk, unsigned char *ky, int d);
+void				des_ecb_message(t_des *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 11:24:35 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 14:01:42 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@
 
 unsigned char	*des_key_reduction(unsigned char *eight, int j)
 {
-	printf("REDUCE!\n");
 	unsigned char	*seven;
 	int		i;
 

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:14:30 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 16:51:07 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 13:36:30 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,34 @@ unsigned char	*raw_expand(unsigned char *str, unsigned char *new,
 	}
 	free(str);
 	return (final);
+}
+
+/*
+** RAW XOR
+** xor's STRING by OTHER, modifying LEN of STRING's characters
+** OTHER is left alone
+*/
+
+void			raw_xor(unsigned char *str, unsigned char *o, unsigned int len)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < len)
+	{
+		str[i] = str[i] ^ o[i];
+		i++;
+	}
+}
+
+void			raw_copy(unsigned char *dst, unsigned char *src, unsigned int l)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (i < l)
+	{
+		dst[i] = src[i];
+		i++;
+	}
 }

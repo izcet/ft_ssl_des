@@ -6,7 +6,7 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 16:16:13 by irhett            #+#    #+#              #
-#    Updated: 2017/09/14 16:41:33 by irhett           ###   ########.fr        #
+#    Updated: 2017/09/15 14:04:08 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,8 +22,8 @@ SRC_FILE	=	main.c interpret.c init_commands.c commands.c call_command.c \
 				desecb_p.c desecb_e.c desecb_u.c \
 				descbc_p.c descbc_e.c descbc_u.c \
 				command_error.c input_output.c \
-				des_block_perm.c des_validate.c des_work.c \
-				des_sbox.c des_round.c des_xor.c des_key_perm.c des_parse.c \
+				des_block_perm.c des_validate.c \
+				des_sbox.c des_round.c des_key_perm.c des_parse.c \
 				hex.c swap.c raw.c \
 
 

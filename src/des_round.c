@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 10:08:33 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 13:37:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,6 @@ static unsigned char	*des_expansion_perm(unsigned char *right)
 	return (expanded);
 }
 
-static void				des_raw_copy(char *dst, char *src, unsigned int len)
-{
-	unsigned int	i;
-
-	i = 0;
-	while (i < len)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-}
-
 static unsigned char	*des_pbox_perm(unsigned char *str)
 {
 	unsigned char	temp[4];
@@ -80,7 +68,7 @@ static unsigned char	*des_pbox_perm(unsigned char *str)
 	temp[3] = LSHBY(0, 4, 2) + RSHBY(0, 16, 3) + LSHBY(1, 8, 3);
 	temp[3] += RSHBY(1, 32, 3) + LSHBY(2, 32, 2) + LSHBY(2, 4, 1);
 	temp[3] += LSHBY(3, 4, 3) + RSHBY(3, 128, 7);
-	des_raw_copy((char *)str, (char *)temp, 4);
+	raw_copy(str, temp, 4);
 	return (str);
 }
 
@@ -103,9 +91,9 @@ void			des_round(unsigned char *left, unsigned char *right,
 	unsigned char	*temp;
 
 	temp = des_expansion_perm(right);
-	 des_xor(temp, subkey, 6);
+	raw_xor(temp, subkey, 6);
 	temp = des_sbox_sub(temp);
 	temp = des_pbox_perm(temp);
-	des_xor(left, temp, 4);
+	raw_xor(left, temp, 4);
 	free(temp);
 }
