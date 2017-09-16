@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 14:37:41 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 16:59:11 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ unsigned char	*base64_decode(unsigned char *enc, char *key, unsigned int *len,
 	unsigned int	oldlen;
 	unsigned int	i;
 	unsigned char	*str;
+	int				ret;
 
 	oldlen = base64_trim((char *)enc);
 	*len = (oldlen / 4) * 3;
@@ -49,7 +50,8 @@ unsigned char	*base64_decode(unsigned char *enc, char *key, unsigned int *len,
 	i = 0;
 	while (i < *len)
 	{
-		if (four_to_three(&(str[i]), enc, key))
+		ret = four_to_three(&(str[i]), enc, key);
+		if (ret == -1)
 		{
 			com_err(caller, "Invalid character in input stream.");
 			free(str);
@@ -58,6 +60,7 @@ unsigned char	*base64_decode(unsigned char *enc, char *key, unsigned int *len,
 		i += 3;
 		enc += 4;
 	}
+	*len -= ret;
 	return (str);
 }
 

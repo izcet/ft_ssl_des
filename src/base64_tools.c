@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 14:53:54 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 16:59:47 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ int				four_to_three(unsigned char *str, unsigned char *enc, char *key)
 	int				i;
 	int				c_i;
 	unsigned char	c[4];
+	int				ret;
 
 	i = -1;
 	while (++i < 4)
 	{
 		if (!(ft_isalpha(enc[i]) || ft_isdigit(enc[i]) || enc[i] == '+' ||
 					enc[i] == '/' || enc[i] == '='))
-			return (1);
+			return (-1);
 	}
 	i = -1;
 	while (++i < 64)
@@ -57,14 +58,18 @@ int				four_to_three(unsigned char *str, unsigned char *enc, char *key)
 			if (enc[c_i] == key[i])
 				c[c_i] = i;
 	}
+	ret = 0;
 	i = -1;
 	while (++i < 4)
 		if (enc[i] == '=')
+		{
+			ret++;
 			c[i] = 0;
+		}
 	str[0] = (c[0] << 2) | (c[1] >> 4);
 	str[1] = ((c[1] & 15) << 4) | (c[2] >> 2);
 	str[2] = ((c[2] & 3) << 6) | c[3];
-	return (0);
+	return (ret);
 }
 
 unsigned int	base64_trim(char *str)
