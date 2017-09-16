@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/15 16:49:57 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 18:17:49 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ unsigned char	*des_ecb_block(unsigned char *block, unsigned char *key, int d)
 	return (raw_append(right, left, 4, 4));
 }
 
-void	des_ecb_message(t_des *data)
+void			des_ecb_message(t_des *data)
 {
 	unsigned char	*done;
 	unsigned char	*block;
@@ -66,7 +66,7 @@ void	des_ecb_message(t_des *data)
 	data->str = done;
 }
 
-int		desecb_e(t_com *c, void *d_t_des)
+int				desecb_e(t_com *c, void *d_t_des)
 {
 	t_des			*d;
 	unsigned char	*temp;
@@ -74,19 +74,15 @@ int		desecb_e(t_com *c, void *d_t_des)
 
 	ret = 0;
 	d = (t_des *)d_t_des;
-	d->c = c;
 	d->str = read_data(d->infile, d->c->name, &(d->strlen));
 	if (!d->str)
 		return (1);
 	if (d->decode && d->base64)
 	{
-		printf("%i\n", d->strlen);
 		temp = base64_decode(d->str, BASE64_KEY, &(d->strlen), c->name);
 		free(d->str);
 		d->str = temp;
 	}
-	if (d->decode)
-	printf("%i\n", d->strlen);
 	des_ecb_message(d);
 	if (d->base64 && !d->decode)
 	{

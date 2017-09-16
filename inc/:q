@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/15 18:29:39 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 18:08:41 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void				des_round(unsigned char *left, unsigned char *right,
 
 unsigned char		*des_ecb_block(unsigned char *bk, unsigned char *ky, int d);
 void				des_ecb_message(t_des *data);
-void				des_cbc_message(t_des *data);
+unsigned char		*des_cbc_message(t_des *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:55:31 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 16:10:37 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/15 18:01:41 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void		*destroy_t_des(t_des *data)
 	return (NULL);
 }
 
-t_des		*create_t_des(t_com *command, int keylen)
+t_des		*create_t_des(t_com *command, int keylen, int v)
 {
 	t_des	*data;
 
@@ -96,7 +96,7 @@ t_des		*create_t_des(t_com *command, int keylen)
 	data->outfile = NULL;
 	data->key = NULL;
 	data->keylen = keylen;
-	data->v = 0;
+	data->v = v;
 	data->iv = NULL;
 	data->c = command;
 	data->str = NULL;
