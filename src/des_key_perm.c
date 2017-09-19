@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/15 14:01:42 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/19 15:23:50 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,33 +22,15 @@
 
 /*
 ** Eigth bit is dropped from the original 64 bit key to form the 56 bit key
-** Permuted against a table, not the code below (though saved for future ref)
 ** Seven Byte 56 bits is Malloc'd and returned
 ** Eight Bytes is left untouched and must be cleaned up in the calling process
-*/
-
-/*
-**	char	*seven;
-**	int		i;
 **
-**	seven = ft_strnew(7);
-**	if (!seven)
-**		return (NULL);
-**	i = 0;
-**	while (i < 7)
-**	{
-**		seven[i] = ((eight[i] & ~1) << i) + (eight[i + 1] >> (7 - i));
-**		i++;
-**	}
-**	return (seven);
-*/
-
-/*
 ** j should be -1 when used here
 */
 
 unsigned char	*des_key_reduction(unsigned char *eight, int j)
 {
+	//printf("des_key_reduction(%s, %i)\n", eight, j);
 	unsigned char	*seven;
 	int		i;
 
@@ -78,6 +60,7 @@ unsigned char	*des_key_reduction(unsigned char *eight, int j)
 
 void			des_key_r_rot(unsigned char *key, int num)
 {
+	//printf("des_key_r_rot(%s, %i)\n", key, num);
 	unsigned char	ltemp;
 	unsigned char	rtemp;
 
@@ -94,6 +77,7 @@ void			des_key_r_rot(unsigned char *key, int num)
 
 void			des_key_l_rot(unsigned char *key, int num)
 {
+	//printf("des_key_l_rot(%s, %i)\n", key, num);
 	unsigned char	ltemp;
 	unsigned char	rtemp;
 
@@ -116,6 +100,7 @@ void			des_key_l_rot(unsigned char *key, int num)
 
 unsigned char	*des_get_subkey(unsigned char *key)
 {
+	//printf("des_get_subkey(%s)\n", key);
 	unsigned char	*sub;
 
 	sub = (unsigned char *)ft_strnew(6);

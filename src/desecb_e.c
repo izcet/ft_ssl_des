@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/15 18:17:49 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/19 16:56:28 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,43 +14,57 @@
 
 unsigned char	*des_ecb_block(unsigned char *block, unsigned char *key, int d)
 {
+	//printf("des_ecb_block(%s, %s, %i)\n", block, key, d);
 	unsigned int		i;
 	unsigned char	*subkey;
 	unsigned char	*left;
 	unsigned char	*right;
 
+	des_init_perm(block);
 	left = raw_clone(block, 4);
 	right = raw_clone(&(block[4]), 4);
 	i = 0;
 	while (i < 16)
 	{
+		printf("ROUND %i PRE\n", i);
+		test_des_print_subkey(key);
 		if (d)
 			des_key_r_rot(key, g_des_key_dec[i]);
 		else
 			des_key_l_rot(key, g_des_key_enc[i]);
+		printf("ROUND %i POST\n", i);
+		test_des_print_subkey(key);
 		subkey = des_get_subkey(key);
+		//test_des_print_roundkey(subkey);
 		des_round(left, right, subkey);
 		free(subkey);
 		swap_ptr((void**)&left, (void**)&right);
 		i++;
 	}
 	free(block);
-	return (raw_append(right, left, 4, 4));
+	block = raw_append(right, left, 4, 4);
+	des_final_perm(block);
+	return (block);
 }
 
 void			des_ecb_message(t_des *data)
 {
+	//printf("des_ecb_message([data object])\n");
 	unsigned char	*done;
 	unsigned char	*block;
 	unsigned char	*subkey;
 	unsigned int	i;
 
+	test_des_print_key(data->key);
 	done = (unsigned char *)ft_strnew(data->strlen);
 	subkey = des_key_reduction(data->key, -1);
+	test_des_print_subkey(subkey);
 	i = 0;
 	while (i < data->strlen)
 	{
 		block = (unsigned char *)ft_strnew(8);
+		printf("BLOCK %i:\n", i);
+		test_des_print_subkey(subkey);
 		ft_bzero((char *)block, sizeof(char) * 8);
 		if (data->strlen - i >= 8)
 			raw_copy(block, &(data->str[i]), 8);
@@ -68,6 +82,7 @@ void			des_ecb_message(t_des *data)
 
 int				desecb_e(t_com *c, void *d_t_des)
 {
+	//printf("desecb_e([command object], [data object])\n");
 	t_des			*d;
 	unsigned char	*temp;
 	int				ret;
