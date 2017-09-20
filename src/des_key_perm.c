@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/19 15:23:50 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/19 20:47:23 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void			des_key_r_rot(unsigned char *key, int num)
 	key[3] = (key[3] >> num) + (key[2] << (8 - num));
 	key[3] = (key[3] & ~((3 << (4 - num)) & 15)) + (rtemp);
 	key[2] = (key[2] >> num) + (key[1] << (8 - num));
-	key[1] = (key[1] >> num) + ltemp;
+	key[1] = (key[1] >> num) + (key[0] << (8 - num));
+	key[0] = (key[0] >> num) + ltemp;
 }
 
 void			des_key_l_rot(unsigned char *key, int num)

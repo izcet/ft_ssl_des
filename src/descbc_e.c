@@ -6,13 +6,13 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/15 19:01:16 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/19 21:54:31 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-void			des_cbc_message(t_des *data)
+void			des_cbc_message_decrypt(t_des *data)
 {
 	unsigned char	*done;
 	unsigned char	*block;
@@ -20,12 +20,38 @@ void			des_cbc_message(t_des *data)
 	unsigned int	i;
 
 	done = (unsigned char *)ft_strnew(data->strlen);
-	subkey = des_key_reduction(data->key, -1);
+	i = data->strlen - 8;
+	while (i < data->strlen)
+	{
+		subkey = des_key_reduction(data->key, -1);
+		block = (unsigned char *)ft_strnew(8);
+		raw_copy(block, &(data->str[i]), 8);
+		i -= 8;
+		block = des_ecb_block(block, subkey, data->decode);
+	//	if (i > data->strlen)
+			raw_xor(block, data->iv, 8);
+	//	else
+	//		raw_xor(block, &(data->str[i]), 8);
+		done = raw_append(block, done, 8, data->strlen - (i + 16));
+		free(subkey);
+	}
+	free(data->str);
+	data->str = done;
+}
+
+void			des_cbc_message_encrypt(t_des *data)
+{
+	unsigned char	*done;
+	unsigned char	*block;
+	unsigned char	*subkey;
+	unsigned int	i;
+
+	done = (unsigned char *)ft_strnew(data->strlen);
 	i = 0;
 	while (i < data->strlen)
 	{
+		subkey = des_key_reduction(data->key, -1);
 		block = (unsigned char *)ft_strnew(8);
-		ft_bzero((char *)block, sizeof(char) * 8);
 		if (data->strlen - i >= 8)
 			raw_copy(block, &(data->str[i]), 8);
 		else
@@ -36,8 +62,8 @@ void			des_cbc_message(t_des *data)
 		block = des_ecb_block(block, subkey, data->decode);
 		data->iv = raw_clone(block, 8);
 		done = raw_append(done, block, i - 8, 8);
+		free(subkey);
 	}
-	free(subkey);
 	data->strlen = i;
 	free(data->str);
 	data->str = done;
@@ -60,7 +86,10 @@ int				descbc_e(t_com *com, void *d_t_des)
 		free(d->str);
 		d->str = temp;
 	}
-	des_cbc_message(d);
+	if (d->decode)
+		des_cbc_message_decrypt(d);
+	else
+		des_cbc_message_encrypt(d);
 	if (d->base64 && !d->decode)
 	{
 		temp = base64_encode(d->str, BASE64_KEY, d->strlen);
