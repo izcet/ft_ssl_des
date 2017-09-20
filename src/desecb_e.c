@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/19 21:04:43 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/20 13:29:02 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ void			des_ecb_message(t_des *data)
 	{
 		subkey = des_key_reduction(data->key, -1);
 		block = (unsigned char *)ft_strnew(8);
-		ft_bzero((char *)block, sizeof(char) * 8);
 		if (data->strlen - i >= 8)
 			raw_copy(block, &(data->str[i]), 8);
 		else
