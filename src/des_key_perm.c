@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/19 20:47:23 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/20 16:35:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 
 unsigned char	*des_key_reduction(unsigned char *eight, int j)
 {
-	//printf("des_key_reduction(%s, %i)\n", eight, j);
 	unsigned char	*seven;
 	int		i;
 
@@ -41,7 +40,7 @@ unsigned char	*des_key_reduction(unsigned char *eight, int j)
 	{
 		i = -1;
 		while (++i < 8)
-			seven[j] += (eight[7 - i] & (128 >> j)) >> i;
+			seven[j] += ((eight[7 - i] & (128 >> j)) << j) >> i;
 	}
 	seven[3] += LSHBY(7, 16, 3) + LSHBY(6, 16, 2) + LSHBY(5, 16, 1);
 	seven[3] += LSHBY(4, 16, 0) + LSHBY(7, 2, 2) + LSHBY(6, 2, 1);
@@ -53,14 +52,13 @@ unsigned char	*des_key_reduction(unsigned char *eight, int j)
 	seven[5] += LSHBY(0, 4, 2) + RSHBY(7, 8, 0) + RSHBY(6, 8, 1);
 	seven[5] += RSHBY(5, 8, 2) + RSHBY(4, 8, 3);
 	seven[6] += LSHBY(3, 8, 4) + LSHBY(2, 8, 3) + LSHBY(1, 8, 2);
-	seven[6] += RSHBY(0, 8, 1) + RSHBY(3, 16, 1) + RSHBY(2, 16, 2);
+	seven[6] += LSHBY(0, 8, 1) + RSHBY(3, 16, 1) + RSHBY(2, 16, 2);
 	seven[6] += RSHBY(1, 16, 3) + RSHBY(0, 16, 4);
 	return (seven);
 }
 
 void			des_key_r_rot(unsigned char *key, int num)
 {
-	//printf("des_key_r_rot(%s, %i)\n", key, num);
 	unsigned char	ltemp;
 	unsigned char	rtemp;
 
@@ -78,7 +76,6 @@ void			des_key_r_rot(unsigned char *key, int num)
 
 void			des_key_l_rot(unsigned char *key, int num)
 {
-	//printf("des_key_l_rot(%s, %i)\n", key, num);
 	unsigned char	ltemp;
 	unsigned char	rtemp;
 
@@ -101,7 +98,6 @@ void			des_key_l_rot(unsigned char *key, int num)
 
 unsigned char	*des_get_subkey(unsigned char *key)
 {
-	//printf("des_get_subkey(%s)\n", key);
 	unsigned char	*sub;
 
 	sub = (unsigned char *)ft_strnew(6);
@@ -111,11 +107,13 @@ unsigned char	*des_get_subkey(unsigned char *key)
 	sub[0] += LSHKY(2, 1, 4) + RSHKY(0, 128, 4) + RSHKY(0, 8, 1);
 	sub[0] += RSHKY(0, 32, 4) + RSHKY(3, 16, 4);
 	sub[1] += LSHKY(1, 2, 6) + LSHKY(0, 4, 4) + LSHKY(2, 8, 2);
-	sub[1] += RSHKY(1, 64, 2) + LSHKY(2, 2, 2) + RSHKY(2, 16, 2);
-	sub[1] += RSHKY(2, 16, 3) + RSHKY(0, 16, 4);
-	sub[2] += LSHKY(3, 64, 1) + LSHKY(0, 1, 6) + LSHKY(1, 1, 4);
+	sub[1] += RSHKY(1, 64, 2) + LSHKY(2, 2, 2) + RSHKY(2, 32, 3);
+	sub[1] += RSHKY(1, 16, 3) + RSHKY(0, 16, 4);
+	
+	sub[2] += LSHKY(3, 64, 1) + LSHKY(0, 1, 6) + LSHKY(1, 1, 5);
 	sub[2] += LSHKY(0, 2, 3) + RSHKY(3, 32, 2) + RSHKY(2, 16, 2);
 	sub[2] += RSHKY(1, 8, 2) + RSHKY(0, 64, 6);
+	
 	sub[3] += GETKY(5, 128) + LSHKY(6, 16, 2) + LSHKY(3, 2, 4);
 	sub[3] += LSHKY(4, 8, 1) + LSHKY(5, 2, 2) + LSHKY(6, 2, 1);
 	sub[3] += RSHKY(3, 4, 1) + GETKY(4, 1);

@@ -6,11 +6,18 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/11 17:14:30 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/15 13:36:30 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/20 14:23:13 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
+
+/*
+** Malloc's return value
+** return value is length (l + r + 1) bzero'd
+** copies l of str and r of new
+** frees str and new
+*/
 
 unsigned char	*raw_append(unsigned char *str, unsigned char *new, 
 		unsigned int l, unsigned int r)
