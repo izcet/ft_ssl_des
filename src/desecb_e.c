@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/20 16:24:09 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/20 17:46:52 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ unsigned char	*des_ecb_block(unsigned char *block, unsigned char *key, int d)
 	unsigned char	*left;
 	unsigned char	*right;
 
-	printf("%i\n", d);
+	test_des_print_key(block);
 	des_init_perm(block);
+	test_des_print_key(block);
 	left = raw_clone(block, 4);
 	right = raw_clone(&(block[4]), 4);
 	i = 0;
-	test_des_print_subkey(key);
 	while (i < 16)
 	{
 		if (d)
@@ -32,7 +32,6 @@ unsigned char	*des_ecb_block(unsigned char *block, unsigned char *key, int d)
 		else
 			des_key_l_rot(key, g_des_key_enc[i]);
 		subkey = des_get_subkey(key);
-		test_des_print_roundkey(subkey);
 		des_round(left, right, subkey);
 		free(subkey);
 		swap_ptr((void**)&left, (void**)&right);
@@ -40,7 +39,9 @@ unsigned char	*des_ecb_block(unsigned char *block, unsigned char *key, int d)
 	}
 	free(block);
 	block = raw_append(right, left, 4, 4);
+	test_des_print_key(block);
 	des_final_perm(block);
+	test_des_print_key(block);
 	return (block);
 }
 
@@ -55,7 +56,6 @@ void			des_ecb_message(t_des *data)
 	i = 0;
 	while (i < data->strlen)
 	{
-		test_des_print_key(data->key);
 		subkey = des_key_reduction(data->key, -1);
 		block = (unsigned char *)ft_strnew(8);
 		if (data->strlen - i >= 8)

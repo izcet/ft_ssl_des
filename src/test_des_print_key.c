@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/19 16:40:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/19 21:40:41 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/20 22:15:05 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void		print_byte(unsigned char c)
 	ft_putchar('0' + (c & 1));
 }
 
-static void	test_print_num(unsigned char *arr, int len)
+void			test_print_num(unsigned char *arr, int len)
 {
 	int 	i;
 
@@ -39,17 +39,17 @@ static void	test_print_num(unsigned char *arr, int len)
 	ft_putchar('\n');
 }
 
-void		test_des_print_key(unsigned char *eight)
+void			test_des_print_key(unsigned char *eight)
 {
 	test_print_num(eight, 8);
 }
 
-void		test_des_print_subkey(unsigned char *seven)
+void			test_des_print_subkey(unsigned char *seven)
 {
 	test_print_num(seven, 7);
 }
 
-void		test_des_print_roundkey(unsigned char *six)
+void			test_des_print_roundkey(unsigned char *six)
 {
 	test_print_num(six, 6);
 }

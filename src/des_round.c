@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/19 15:23:44 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/20 22:14:27 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 
 static unsigned char	des_expansion(unsigned char four)
 {
-	//printf("des_expansion(%i)\n", four);
 	unsigned char	six;
 
 	six = 0;
@@ -32,7 +31,6 @@ static unsigned char	des_expansion(unsigned char four)
 
 static unsigned char	*des_expansion_perm(unsigned char *right)
 {
-	//printf("des_expansion_perm(%s)\n", right);
 	unsigned char	*expanded;
 	unsigned char	temp[8];
 
@@ -56,7 +54,6 @@ static unsigned char	*des_expansion_perm(unsigned char *right)
 
 static unsigned char	*des_pbox_perm(unsigned char *str)
 {
-	//printf("des_pbox_perm(%s)\n", str);
 	unsigned char	temp[4];
 
 	temp[0] = LSHBY(0, 2, 5) + LSHBY(2, 24, 1) + RSHBY(3, 16, 3);
@@ -91,13 +88,15 @@ static unsigned char	*des_pbox_perm(unsigned char *str)
 void			des_round(unsigned char *left, unsigned char *right, 
 		unsigned char *subkey)
 {
-	//printf("des_round(%s, %s, %s)\n", left, right, subkey);
 	unsigned char	*temp;
 
 	temp = des_expansion_perm(right);
+	test_des_print_roundkey(temp);
 	raw_xor(temp, subkey, 6);
 	temp = des_sbox_sub(temp);
+	test_print_num(temp, 4);
 	temp = des_pbox_perm(temp);
+	test_print_num(temp, 4);
 	raw_xor(left, temp, 4);
 	free(temp);
 }

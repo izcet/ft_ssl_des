@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/20 14:10:09 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/20 22:14:03 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,6 @@ void				des_cbc_message(t_des *data);
 void				test_des_print_key(unsigned char *eight);
 void				test_des_print_subkey(unsigned char *seven);
 void				test_des_print_roundkey(unsigned char *six);
+void				test_print_num(unsigned char *arr, int len);
+
 #endif
