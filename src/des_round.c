@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/20 22:19:06 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/21 11:00:56 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,13 @@ static unsigned char	des_expansion(unsigned char four)
 {
 	unsigned char	six;
 
+//	test_print_num(&four, 1);
 	six = 0;
 	six += four << 2;
 	six += (four & 8) << 4;
 	six += (four & 1);
+	//test_print_num(&six, 1);
+//	printf("\n");
 	return (six);
 }
 
@@ -48,7 +51,7 @@ static unsigned char	*des_expansion_perm(unsigned char *right)
 	expanded[2] = LSHIFT(2, 5) + RSHIFT(3, 1) + RSHIFT(4, 7);
 	expanded[3] = LSHIFT(3, 7) + LSHIFT(4, 1) + RSHIFT(5, 5);
 	expanded[4] = LSHIFT(5, 3) + RSHIFT(6, 3);
-	expanded[5] = LSHIFT(6, 5) + RSHIFT(7, 1) + RSHIFT(1, 7);
+	expanded[5] = LSHIFT(6, 5) + RSHIFT(7, 1) + RSHIFT(0, 7);
 	return (expanded);
 }
 
