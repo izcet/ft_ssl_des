@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/20 22:14:27 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/20 22:19:06 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ void			des_round(unsigned char *left, unsigned char *right,
 	unsigned char	*temp;
 
 	temp = des_expansion_perm(right);
-	test_des_print_roundkey(temp);
+	//test_des_print_roundkey(temp);
 	raw_xor(temp, subkey, 6);
 	temp = des_sbox_sub(temp);
-	test_print_num(temp, 4);
+//	test_print_num(temp, 4);
 	temp = des_pbox_perm(temp);
-	test_print_num(temp, 4);
+//	test_print_num(temp, 4);
 	raw_xor(left, temp, 4);
 	free(temp);
 }
