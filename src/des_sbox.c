@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/28 17:26:17 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 21:38:17 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/22 15:48:01 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ unsigned char	des_sbox(unsigned char sixbits, unsigned char *box)
 	index += ((sixbits >> 5) & 1) * 32;
 	index += (sixbits & 1) * 16;
 	index += ((sixbits >> 1) & 15);
+//	test_print_num(&sixbits, 1);
+	printf("[%i] %i\n", index, box[(int)index]);
+	test_print_num(&(box[index]), 1);
 	return (box[(int)index]);
 }
 
@@ -37,6 +40,7 @@ unsigned char	des_sbox(unsigned char sixbits, unsigned char *box)
 
 unsigned char	*des_sbox_sub(unsigned char *six)
 {
+	printf("\nTOP\n");
 	unsigned char	*four;
 
 	four = (unsigned char *)ft_strnew(4);
@@ -51,5 +55,7 @@ unsigned char	*des_sbox_sub(unsigned char *six)
 	four[3] = des_sbox(((six[4] & 15) << 2) + (six[5] >> 6), g_des_sbox_7) << 4;
 	four[3] += des_sbox(six[5] & 63, g_des_sbox_8);
 	free(six);
+	test_print_num(four, 4);
+	printf("DONE\n\n");
 	return (four);
 }

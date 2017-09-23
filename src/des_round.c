@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/21 11:00:56 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/22 15:41:45 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,15 @@
 
 #define LSHBY(a,b,c) ((str[a] & b) << c)
 #define RSHBY(a,b,c) ((str[a] & b) >> c)
-
+#define GETAT(a,b) (str[a] & b)
 static unsigned char	des_expansion(unsigned char four)
 {
 	unsigned char	six;
 
-//	test_print_num(&four, 1);
 	six = 0;
 	six += four << 2;
 	six += (four & 8) << 4;
 	six += (four & 1);
-	//test_print_num(&six, 1);
-//	printf("\n");
 	return (six);
 }
 
@@ -59,14 +56,15 @@ static unsigned char	*des_pbox_perm(unsigned char *str)
 {
 	unsigned char	temp[4];
 
+	ft_bzero(temp, sizeof(unsigned char) * 4);
 	temp[0] = LSHBY(0, 2, 5) + LSHBY(2, 24, 1) + RSHBY(3, 16, 3);
-	temp[0] += RSHBY(2, 128, 7) + LSHBY(3, 8, 0);
+	temp[0] += RSHBY(2, 128, 7) + GETAT(3, 8);
 	temp[0] += LSHBY(1, 1, 7) + RSHBY(1, 16, 2);
-	temp[1] = LSHBY(0, 136, 0) + LSHBY(1, 2, 5) + RSHBY(1, 64, 6);
+	temp[1] = GETAT(0, 136) + LSHBY(1, 2, 5) + RSHBY(1, 64, 6);
 	temp[1] += LSHBY(2, 2, 4) + RSHBY(2, 64, 4);
-	temp[1] += RSHBY(3, 2, 0) + RSHBY(3, 64, 2);
-	temp[2] = LSHBY(0, 64, 1) + LSHBY(0, 1, 6) + RSHBY(0, 32, 5);
-	temp[2] += LSHBY(2, 1, 5) + LSHBY(1, 4, 3) + RSHBY(1, 128, 7);
+	temp[1] += GETAT(3, 2) + RSHBY(3, 64, 2);
+	temp[2] = LSHBY(0, 64, 1) + LSHBY(0, 1, 6) + RSHBY(0, 32, 4);
+	temp[2] += LSHBY(2, 1, 5) + LSHBY(1, 4, 2) + RSHBY(1, 128, 7);
 	temp[2] += LSHBY(3, 1, 3) + RSHBY(3, 32, 3);
 	temp[3] = LSHBY(0, 4, 2) + RSHBY(0, 16, 3) + LSHBY(1, 8, 3);
 	temp[3] += RSHBY(1, 32, 3) + LSHBY(2, 32, 2) + LSHBY(2, 4, 1);
@@ -93,9 +91,18 @@ void			des_round(unsigned char *left, unsigned char *right,
 {
 	unsigned char	*temp;
 
+	//test_print_num(right, 4);
 	temp = des_expansion_perm(right);
+	//test_print_num(temp, 6);
 	//test_des_print_roundkey(temp);
+//	printf("Right (temp):\n");
+//	test_print_num(temp, 6);
+//	printf("Subkey:\n");
+//	test_print_num(subkey, 6);
 	raw_xor(temp, subkey, 6);
+//	printf("Result (temp):\n");
+//	test_print_num(temp, 6);
+//	printf("\n");
 	temp = des_sbox_sub(temp);
 //	test_print_num(temp, 4);
 	temp = des_pbox_perm(temp);
