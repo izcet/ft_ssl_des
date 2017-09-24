@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/22 15:41:45 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/22 19:27:16 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,39 +74,27 @@ static unsigned char	*des_pbox_perm(unsigned char *str)
 }
 
 /*
-** left		= 4 chars
-** right	= 4 chars
-** key		= 6 chars, subkey
-** last		= 8 chars. NULL if ECB mode, otherwise CBC
-*/
+ ** left		= 4 chars
+ ** right	= 4 chars
+ ** key		= 6 chars, subkey
+ ** last		= 8 chars. NULL if ECB mode, otherwise CBC
+ */
 
 /*
-** right must remain untouched
-** temporary string contains right's workings
-** left is modified by xor with temp to become the new right
-*/
+ ** right must remain untouched
+ ** temporary string contains right's workings
+ ** left is modified by xor with temp to become the new right
+ */
 
 void			des_round(unsigned char *left, unsigned char *right, 
 		unsigned char *subkey)
 {
 	unsigned char	*temp;
 
-	//test_print_num(right, 4);
 	temp = des_expansion_perm(right);
-	//test_print_num(temp, 6);
-	//test_des_print_roundkey(temp);
-//	printf("Right (temp):\n");
-//	test_print_num(temp, 6);
-//	printf("Subkey:\n");
-//	test_print_num(subkey, 6);
 	raw_xor(temp, subkey, 6);
-//	printf("Result (temp):\n");
-//	test_print_num(temp, 6);
-//	printf("\n");
 	temp = des_sbox_sub(temp);
-//	test_print_num(temp, 4);
 	temp = des_pbox_perm(temp);
-//	test_print_num(temp, 4);
 	raw_xor(left, temp, 4);
 	free(temp);
 }

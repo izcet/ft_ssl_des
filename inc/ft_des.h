@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/20 22:14:03 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/22 19:36:41 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ int					des_validate_iv(t_des *data);
 
 void				des_init_perm(unsigned char *eight);
 void				des_final_perm(unsigned char *eight);
+
+unsigned char		*des_get_left(unsigned char *block);
+unsigned char		*des_get_right(unsigned char *block);
+unsigned char		*des_zipper(unsigned char *left, unsigned char *right);
 
 unsigned char		des_sbox(unsigned char sixbits, unsigned char *box);
 unsigned char		*des_sbox_sub(unsigned char *bits);
