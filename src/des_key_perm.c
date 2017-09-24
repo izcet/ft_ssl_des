@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/20 16:42:31 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/23 19:40:31 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ unsigned char	*des_key_reduction(unsigned char *eight, int j)
 	{
 		i = -1;
 		while (++i < 8)
-			seven[j] += ((eight[7 - i] & (128 >> j)) << j) >> i;
+			seven[j] += ((eight[i] & (128 >> j)) << j) >> (7 - i);
 	}
 	seven[3] += LSHBY(7, 16, 3) + LSHBY(6, 16, 2) + LSHBY(5, 16, 1);
 	seven[3] += LSHBY(4, 16, 0) + LSHBY(7, 2, 2) + LSHBY(6, 2, 1);
