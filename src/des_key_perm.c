@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/23 19:40:31 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/25 16:12:20 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,8 +116,8 @@ unsigned char	*des_get_subkey(unsigned char *key)
 	sub[3] += LSHKY(4, 8, 1) + LSHKY(5, 2, 2) + LSHKY(6, 2, 1);
 	sub[3] += RSHKY(3, 4, 1) + GETKY(4, 1);
 	sub[4] += LSHKY(6, 32, 2) + LSHKY(5, 8, 3) + RSHKY(4, 128, 2);
-	sub[4] += LSHKY(5, 1, 4) + RSHKY(4, 16, 1) + RSHKY(6, 128, 5);
-	sub[4] += GETKY(5, 2) + GETKY(6, 1);
+	sub[4] += LSHKY(5, 1, 4) + RSHKY(5, 16, 1) + RSHKY(6, 128, 5);
+	sub[4] += GETKY(4, 2) + GETKY(6, 1);
 	sub[5] += LSHKY(4, 64, 1) + LSHKY(6, 8, 3) + LSHKY(5, 4, 3);
 	sub[5] += RSHKY(5, 64, 2) + RSHKY(6, 64, 3) + RSHKY(4, 16, 2);
 	sub[5] += RSHKY(3, 8, 2) + GETKY(3, 1);

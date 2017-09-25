@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/23 19:56:11 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/25 16:31:34 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,19 @@ unsigned char	*des_ecb_block(unsigned char *block, unsigned char *key, int d)
 	i = 0;
 	while (i < 16)
 	{
-		printf("ROUND %i\n", i + 1);
 		if (d)
 			des_key_r_rot(key, g_des_key_dec[i]);
 		else
 			des_key_l_rot(key, g_des_key_enc[i]);
-		test_print_num(key, 4);
-		ft_putstr("                           ");
-		test_print_num(&(key[3]), 4);
 		subkey = des_get_subkey(key);
-		printf("\n");
-		test_print_num(subkey, 6);
 		des_round(left, right, subkey);
 		free(subkey);
 		swap_ptr((void**)&left, (void**)&right);
 		i++;
-		printf("\n\n");
 	}
 	free(block);
 	block = raw_append(right, left, 4, 4);
-	//block = des_zipper(right, left);
 	des_final_perm(block);
-	//test_print_num(block, 8);
 	return (block);
 }
 
@@ -57,15 +48,11 @@ void			des_ecb_message(t_des *data)
 	unsigned char	*subkey;
 	unsigned int	i;
 
-	done = (unsigned char *)ft_strnew(data->strlen);
+	done = (unsigned char *)ft_strnew(0);
 	i = 0;
 	while (i < data->strlen)
 	{
-		printf("\n");
-		test_print_num(data->key, 8);
 		subkey = des_key_reduction(data->key, -1);
-		test_print_num(subkey, 7);
-		printf("\n\n\n");
 		block = (unsigned char *)ft_strnew(8);
 		if (data->strlen - i >= 8)
 			raw_copy(block, &(data->str[i]), 8);

@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/20 14:23:05 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/25 16:44:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void			des_cbc_message(t_des *data)
 	unsigned char	*subkey;
 	unsigned int	i;
 
-	done = (unsigned char *)ft_strnew(data->strlen);
+	done = (unsigned char *)ft_strnew(0);
 	i = 0;
 	while (i < data->strlen)
 	{
