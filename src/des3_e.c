@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 23:37:55 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/26 00:49:34 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/26 00:55:32 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,15 @@
 
 void	triple_des_message(t_des *data)
 {
-	unsigned char	*iv;
-
-	iv = raw_clone(data->iv, 8);
 	if (data->decode)
 		data->key += 48;
 	des_ecb_message(data);
-	free(data->iv);
-	data->iv = raw_clone(iv, 8);
 	if (data->decode)
 		data->key -= 24;
 	else
 		data->key += 24;
 	data->decode = !data->decode;
 	des_ecb_message(data);
-	free(data->iv);
-	data->iv = iv;
 	data->decode = !data->decode;
 	if (data->decode)
 		data->key -= 24;
