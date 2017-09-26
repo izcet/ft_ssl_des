@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:36:34 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/26 00:36:49 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/26 00:47:06 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ void	triple_des_cbc_message(t_des *data)
 {
 	if (data->decode)
 		data->key += 48;
-	des_ecb_message(data);
+	des_cbc_message(data);
 	if (data->decode)
 		data->key -= 24;
 	else
 		data->key += 24;
 	data->decode = !data->decode;
-	des_ecb_message(data);
+	des_cbc_message(data);
 	data->decode = !data->decode;
 	if (data->decode)
 		data->key -= 24;
 	else
 		data->key += 24;
-	des_ecb_message(data);
+	des_cbc_message(data);
 	if (!data->decode)
 		data->key -= 48;
 }
