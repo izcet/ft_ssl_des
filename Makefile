@@ -6,7 +6,7 @@
 #    By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/08/21 16:16:13 by irhett            #+#    #+#              #
-#    Updated: 2017/09/22 19:37:04 by irhett           ###   ########.fr        #
+#    Updated: 2017/09/26 00:10:00 by irhett           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_FILE	=	main.c interpret.c init_commands.c commands.c call_command.c \
 				des_sbox.c des_round.c des_key_perm.c des_parse.c \
 				hex.c swap.c raw.c \
 				test_des_print_key.c \
-				#3des_p.c 3des_e.c 3des_u.c \
+				des3_p.c des3_e.c des3_u.c \
 
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))
