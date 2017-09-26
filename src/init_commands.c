@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:52:32 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/26 00:21:42 by irhett           ###   ########.fr       */
+/*   Updated: 2017/09/26 00:33:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ static void		populate_lists(t_wrap *c)
 	ASSIGN(2, 3, "des-cbc", descbc_p, descbc_e, descbc_u);
 	ASSIGN(2, 4, "3des", des3_p, des3_e, des3_u);
 	ASSIGN(2, 5, "des3", des3_p, des3_e, des3_u);
+	ASSIGN(2, 6, "3des-cbc", des3_cbc_p, des3_cbc_e, des3_cbc_u);
+	ASSIGN(2, 7, "des3-cbc", des3_cbc_p, des3_cbc_e, des3_cbc_u);
 }
 
 static void		set_wrapper(t_wrap *wrapper, char *name, unsigned int num)
@@ -85,7 +87,7 @@ t_wrap			*init_commands(void)
 	ft_bzero(wrapper, sizeof(t_wrap) * NUM_COMMAND_TYPES);
 	set_wrapper(&(wrapper[0]), "Standard", 0);
 	set_wrapper(&(wrapper[1]), "Message Digest", 0);
-	set_wrapper(&(wrapper[2]), "Cipher", 6);
+	set_wrapper(&(wrapper[2]), "Cipher", 8);
 	populate_lists(wrapper);
 	return (wrapper);
 }
