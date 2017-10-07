@@ -50,9 +50,9 @@ void			des_ecb_message(t_des *data)
 
 	done = (unsigned char *)ft_strnew(0);
 	i = 0;
+	subkey = des_key_reduction(data->key, -1);
 	while (i < data->strlen)
 	{
-		subkey = des_key_reduction(data->key, -1);
 		block = (unsigned char *)ft_strnew(8);
 		if (data->strlen - i >= 8)
 			raw_copy(block, &(data->str[i]), 8);
@@ -61,8 +61,8 @@ void			des_ecb_message(t_des *data)
 		i += 8;
 		block = des_ecb_block(block, subkey, data->decode);
 		done = raw_append(done, block, i - 8, 8);
-		free(subkey);
 	}
+	free(subkey);
 	data->strlen = i;
 	free(data->str);
 	data->str = done;

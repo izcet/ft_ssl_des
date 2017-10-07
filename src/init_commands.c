@@ -59,10 +59,9 @@ static void		populate_lists(t_wrap *c)
 	ASSIGN(2, 1, "des", desecb_p, desecb_e, desecb_u);
 	ASSIGN(2, 2, "des-ecb", desecb_p, desecb_e, desecb_u);
 	ASSIGN(2, 3, "des-cbc", descbc_p, descbc_e, descbc_u);
-	ASSIGN(2, 4, "3des", des3_p, des3_e, des3_u);
-	ASSIGN(2, 5, "des3", des3_p, des3_e, des3_u);
-	ASSIGN(2, 6, "3des-cbc", des3_cbc_p, des3_cbc_e, des3_cbc_u);
-	ASSIGN(2, 7, "des3-cbc", des3_cbc_p, des3_cbc_e, des3_cbc_u);
+	ASSIGN(2, 4, "des3", des3_cbc_p, des3_cbc_e, des3_cbc_u);
+	ASSIGN(2, 5, "des3-cbc", des3_cbc_p, des3_cbc_e, des3_cbc_u);
+	ASSIGN(2, 6, "des3-ecb", des3_ecb_p, des3_ecb_e, des3_ecb_u);
 }
 
 static void		set_wrapper(t_wrap *wrapper, char *name, unsigned int num)
@@ -87,7 +86,7 @@ t_wrap			*init_commands(void)
 	ft_bzero(wrapper, sizeof(t_wrap) * NUM_COMMAND_TYPES);
 	set_wrapper(&(wrapper[0]), "Standard", 0);
 	set_wrapper(&(wrapper[1]), "Message Digest", 0);
-	set_wrapper(&(wrapper[2]), "Cipher", 8);
+	set_wrapper(&(wrapper[2]), "Cipher", 7);
 	populate_lists(wrapper);
 	return (wrapper);
 }

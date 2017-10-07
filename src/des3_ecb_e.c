@@ -12,25 +12,69 @@
 
 #include "ftssl.h"
 
+void			destroy_des3_keys(unsigned char **keys)
+{
+	int		i;
+
+	if (keys)
+	{
+		i = -1;
+		while (++i < 3)
+			if (keys[i])
+				free(keys[i]);
+		free(keys);
+	}
+}
+
+unsigned char	**init_des3_keys(unsigned char *key)
+{
+	unsigned char	**keys;
+
+	keys = (unsigned char **)malloc(sizeof(unsigned char *) * 3);
+	if (!keys)
+		return (NULL);
+	keys[0] = des_key_reduction(key, -1);
+	keys[1] = des_key_reduction(key + 8, -1);
+	keys[2] = des_key_reduction(key + 16, -1);
+	return (keys);
+}
+
 void	triple_des_message(t_des *data)
 {
-	if (data->decode)
-		data->key += 48;
-	des_ecb_message(data);
-	if (data->decode)
-		data->key -= 24;
-	else
-		data->key += 24;
-	data->decode = !data->decode;
-	des_ecb_message(data);
-	data->decode = !data->decode;
-	if (data->decode)
-		data->key -= 24;
-	else
-		data->key += 24;
-	des_ecb_message(data);
-	if (!data->decode)
-		data->key -= 48;
+	unsigned char	**keys;
+	unsigned char	*block;
+	unsigned char	*done;
+	unsigned int	i;
+
+	keys = init_des3_keys(data->key);
+	if (keys)
+	{
+		i = 0;
+		done = (unsigned char *)ft_strnew(0);
+		while (i < data->strlen)
+		{
+			block = (unsigned char *)ft_strnew(8);
+			if (data->strlen - i >= 8)
+				raw_copy(block, &(data->str[i]), 8);
+			else
+				raw_copy(block, &(data->str[i]), data->strlen - i);
+			i += 8;
+			if (!data->decode)
+				block = des_ecb_block(block, keys[0], data->decode);
+			else
+				block = des_ecb_block(block, keys[2], data->decode);
+			block = des_ecb_block(block, keys[1], !data->decode);
+			if (!data->decode)
+				block = des_ecb_block(block, keys[2], data->decode);
+			else
+				block = des_ecb_block(block, keys[0], data->decode);
+			done = raw_append(done, block, i - 8, 8);
+		}
+		destroy_des3_keys(keys);
+		data->strlen = i;
+		free(data->str);
+		data->str = done;
+	}
 }
 
 int		des3_e(t_com *com, void *d_t_des)
