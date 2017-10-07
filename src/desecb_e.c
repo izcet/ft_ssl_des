@@ -6,11 +6,21 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/25 16:31:34 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 16:04:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
+
+void			set_block(unsigned char *block, unsigned char *str, 
+		unsigned int i, unsigned int strlen)
+{
+	block = (unsigned char *)ft_strnew(8);
+	if (strlen - i >= 8)
+		raw_copy(block, str, 8);
+	else
+		raw_copy(block, str, strlen - i);
+}
 
 unsigned char	*des_ecb_block(unsigned char *block, unsigned char *key, int d)
 {
@@ -53,11 +63,7 @@ void			des_ecb_message(t_des *data)
 	subkey = des_key_reduction(data->key, -1);
 	while (i < data->strlen)
 	{
-		block = (unsigned char *)ft_strnew(8);
-		if (data->strlen - i >= 8)
-			raw_copy(block, &(data->str[i]), 8);
-		else
-			raw_copy(block, &(data->str[i]), data->strlen - i);
+		set_block(block, &(data->str[i]), i, data->strlen);
 		i += 8;
 		block = des_ecb_block(block, subkey, data->decode);
 		done = raw_append(done, block, i - 8, 8);

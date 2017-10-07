@@ -75,6 +75,8 @@ unsigned char		*des_get_subkey(unsigned char *key);
 void				des_round(unsigned char *left, unsigned char *right, 
 		unsigned char *subkey);
 
+void				set_block(unsigned char *blockk, unsigned char *str,
+		unsigned int i, unsigned int strlen);
 unsigned char		*des_ecb_block(unsigned char *bk, unsigned char *ky, int d);
 void				des_ecb_message(t_des *data);
 void				des_cbc_message(t_des *data);
@@ -83,6 +85,7 @@ void				triple_des_cbc_message(t_des *data);
 
 unsigned char		**init_des3_keys(unsigned char *key);
 void				destroy_des3_keys(unsigned char **keys);
+unsigned char		*des3_block(unsigned char *blk, unsigned char **key, int d);
 
 void				test_des_print_key(unsigned char *eight);
 void				test_des_print_subkey(unsigned char *seven);

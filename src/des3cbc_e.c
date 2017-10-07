@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:36:34 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 15:47:26 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 16:04:12 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,19 @@
 
 void	triple_des_cbc_message(t_des *data)
 {
-	if (data->decode)
-		data->key += 48;
-	des_cbc_message(data);
-	if (data->decode)
-		data->key -= 24;
-	else
-		data->key += 24;
-	data->decode = !data->decode;
-	des_cbc_message(data);
-	data->decode = !data->decode;
-	if (data->decode)
-		data->key -= 24;
-	else
-		data->key += 24;
-	des_cbc_message(data);
-	if (!data->decode)
-		data->key -= 48;
+	unsigned char	**keys;
+	unsigned char	*block;
+	unsigned char	*done;
+	unsigned int	i;
+
+	keys = init_des3_keys(data->key);
+	if (keys)
+	{
+		i = 0;
+		done = (unsigned char *)ft_strnew(0);
+		while (i < data->strlen)
+		{
+			set_block(block, &(data->str[i]), i, data->strlen);
 }
 
 int		des3cbc_e(t_com *com, void *d_t_des)
