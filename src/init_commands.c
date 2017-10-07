@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:52:32 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/26 00:33:09 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 16:08:20 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ static void		populate_lists(t_wrap *c)
 	ASSIGN(2, 1, "des", desecb_p, desecb_e, desecb_u);
 	ASSIGN(2, 2, "des-ecb", desecb_p, desecb_e, desecb_u);
 	ASSIGN(2, 3, "des-cbc", descbc_p, descbc_e, descbc_u);
-	ASSIGN(2, 4, "des3", des3_cbc_p, des3_cbc_e, des3_cbc_u);
-	ASSIGN(2, 5, "des3-cbc", des3_cbc_p, des3_cbc_e, des3_cbc_u);
-	ASSIGN(2, 6, "des3-ecb", des3_ecb_p, des3_ecb_e, des3_ecb_u);
+	ASSIGN(2, 4, "des3", des3cbc_p, des3cbc_e, des3cbc_u);
+	ASSIGN(2, 5, "des3-cbc", des3cbc_p, des3cbc_e, des3cbc_u);
+	ASSIGN(2, 6, "des3-ecb", des3ecb_p, des3ecb_e, des3ecb_u);
 }
 
 static void		set_wrapper(t_wrap *wrapper, char *name, unsigned int num)
