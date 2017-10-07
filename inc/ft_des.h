@@ -81,6 +81,9 @@ void				des_cbc_message(t_des *data);
 void				triple_des_message(t_des *data);
 void				triple_des_cbc_message(t_des *data);
 
+unsigned char		**init_des3_keys(unsigned char *key);
+void				destroy_des3_keys(unsigned char **keys);
+
 void				test_des_print_key(unsigned char *eight);
 void				test_des_print_subkey(unsigned char *seven);
 void				test_des_print_roundkey(unsigned char *six);
