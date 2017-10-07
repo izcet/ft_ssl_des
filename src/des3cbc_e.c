@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:36:34 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 16:04:12 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 16:07:23 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,28 @@ void	triple_des_cbc_message(t_des *data)
 		while (i < data->strlen)
 		{
 			set_block(block, &(data->str[i]), i, data->strlen);
+			i += 8;
+			if (!data->decode)
+			{
+				raw_xor(block, data->iv, 8);
+				free(data->iv);
+			}
+			block = des3_block(block, keys, data->decode);
+			if (data->decode)
+			{
+				raw_xor(block, data->iv, 8);
+				free(data->iv);
+				data->iv = raw_clone(&(data->str[i - 8]), 8);
+			}
+			else
+				data->iv = raw_clone(block, 8);
+			done = raw_append(done, block, i - 8, 8);
+		}
+		destroy_des3_keys(keys);
+		data->strlen = i;
+		free(data->str);
+		data->str = done;
+	}
 }
 
 int		des3cbc_e(t_com *com, void *d_t_des)
