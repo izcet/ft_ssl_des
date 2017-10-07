@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   des3_cbc_p.c                                       :+:      :+:    :+:   */
+/*   des3cbc_p.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:34:14 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/26 00:34:43 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 15:47:35 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-void	*des3_cbc_p(t_com *command, int argc, char **argv)
+void	*des3cbc_p(t_com *command, int argc, char **argv)
 {
 	t_des	*data;
 

@@ -26,8 +26,8 @@ SRC_FILE	=	main.c interpret.c init_commands.c commands.c call_command.c \
 				des_sbox.c des_round.c des_key_perm.c des_parse.c \
 				hex.c swap.c raw.c \
 				test_des_print_key.c \
-				des3_ecb_p.c des3_ecb_e.c des3_ecb_u.c \
-				des3_cbc_p.c des3_cbc_e.c des3_cbc_u.c \
+				des3ecb_p.c des3ecb_e.c des3ecb_u.c \
+				des3cbc_p.c des3cbc_e.c des3cbc_u.c \
 
 
 SRCS		=	$(addprefix $(SRC_DIR)/, $(SRC_FILE))

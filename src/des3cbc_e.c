@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   des3_cbc_e.c                                       :+:      :+:    :+:   */
+/*   des3cbc_e.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:36:34 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/26 00:55:22 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 15:47:26 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	triple_des_cbc_message(t_des *data)
 		data->key -= 48;
 }
 
-int		des3_cbc_e(t_com *com, void *d_t_des)
+int		des3cbc_e(t_com *com, void *d_t_des)
 {
 	t_des			*d;
 	unsigned char	*temp;

@@ -40,13 +40,13 @@ void				*descbc_p(t_com *command, int argc, char **argv);
 int					descbc_e(t_com *command, void *data_t_des);
 void				descbc_u(t_com *command);
 
-void				*des3_p(t_com *command, int argc, char **argv);
-int					des3_e(t_com *command, void *data_t_des);
-void				des3_u(t_com *command);
+void				*des3ecb_p(t_com *command, int argc, char **argv);
+int					des3ecb_e(t_com *command, void *data_t_des);
+void				des3ecb_u(t_com *command);
 
-void				*des3_cbc_p(t_com *command, int argc, char **argv);
-int					des3_cbc_e(t_com *command, void *data_t_des);
-void				des3_cbc_u(t_com *command);
+void				*des3cbc_p(t_com *command, int argc, char **argv);
+int					des3cbc_e(t_com *command, void *data_t_des);
+void				des3cbc_u(t_com *command);
 
 
 t_des				*create_t_des(t_com *command, int keylen, int v);

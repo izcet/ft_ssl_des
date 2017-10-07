@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   des3_cbc_u.c                                       :+:      :+:    :+:   */
+/*   des3cbc_u.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:37:32 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/26 00:39:10 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 15:47:46 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
-void		des3_cbc_u(t_com *command)
+void		des3cbc_u(t_com *command)
 {
 	ft_putstr_fd("Usage: ", 2);
 	ft_putstr_fd(command->name, 2);
