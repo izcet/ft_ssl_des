@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:36:34 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 16:07:23 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 16:18:44 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	triple_des_cbc_message(t_des *data)
 		done = (unsigned char *)ft_strnew(0);
 		while (i < data->strlen)
 		{
-			set_block(block, &(data->str[i]), i, data->strlen);
+			block = set_block(&(data->str[i]), i, data->strlen);
 			i += 8;
 			if (!data->decode)
 			{

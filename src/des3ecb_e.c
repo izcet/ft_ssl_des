@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 23:37:55 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 16:03:55 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 16:18:53 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void			triple_des_message(t_des *data)
 		done = (unsigned char *)ft_strnew(0);
 		while (i < data->strlen)
 		{
-			set_block(block, &(data->str[i]), i, data->strlen);
+			block = set_block(&(data->str[i]), i, data->strlen);
 			if (data->strlen - i >= 8)
 				raw_copy(block, &(data->str[i]), 8);
 			else

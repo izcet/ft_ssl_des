@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 16:04:07 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 16:18:33 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void			des_cbc_message(t_des *data)
 	subkey = des_key_reduction(data->key, -1);
 	while (i < data->strlen)
 	{
-		set_block(block, &(data->str[i]), i, data->strlen);
+		block = set_block(&(data->str[i]), i, data->strlen);
 		i += 8;
 		if (!data->decode)
 		{

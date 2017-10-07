@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/26 00:35:34 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 16:17:45 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,8 @@ unsigned char		*des_get_subkey(unsigned char *key);
 void				des_round(unsigned char *left, unsigned char *right, 
 		unsigned char *subkey);
 
-void				set_block(unsigned char *blockk, unsigned char *str,
-		unsigned int i, unsigned int strlen);
+unsigned char		*set_block(unsigned char *str, unsigned int i,
+		unsigned int strlen);
 unsigned char		*des_ecb_block(unsigned char *bk, unsigned char *ky, int d);
 void				des_ecb_message(t_des *data);
 void				des_cbc_message(t_des *data);
