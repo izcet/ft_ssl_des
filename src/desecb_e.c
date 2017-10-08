@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 16:19:40 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 17:17:15 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,15 @@ unsigned char	*set_block(unsigned char *str, unsigned int i, unsigned int len)
 
 	block = (unsigned char *)ft_strnew(8);
 	if (len - i >= 8)
+	{
+		printf("FIRST %i %i\n", i, len);
 		raw_copy(block, str, 8);
+	}
 	else
+	{
+		printf("SECOND %i %i\n", i, len);
 		raw_copy(block, str, len - i);
+	}
 	return (block);
 }
 
