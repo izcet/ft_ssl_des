@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 17:20:46 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 22:09:26 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,15 @@ void			des_ecb_message(t_des *data)
 
 	done = (unsigned char *)ft_strnew(0);
 	i = 0;
-	subkey = des_key_reduction(data->key, -1);
 	while (i < data->strlen)
 	{
+		subkey = des_key_reduction(data->key, -1);
 		block = set_block(&(data->str[i]), i, data->strlen);
 		i += 8;
 		block = des_ecb_block(block, subkey, data->decode);
 		done = raw_append(done, block, i - 8, 8);
+		free(subkey);
 	}
-	free(subkey);
 	data->strlen = i;
 	free(data->str);
 	data->str = done;
