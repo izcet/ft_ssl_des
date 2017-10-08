@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 15:09:14 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/23 18:43:53 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 22:58:01 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static unsigned char	set_init_byte(unsigned char *eight, unsigned char pos)
 
 void					des_init_perm(unsigned char *eight)
 {
-	//printf("des_init_perm(%s)\n", eight);
 	unsigned char	*bits;
 
 	bits = (unsigned char[8]){0, 0, 0, 0, 0, 0, 0, 0};
@@ -47,7 +46,7 @@ void					des_init_perm(unsigned char *eight)
 static unsigned char	set_final_byte(unsigned char *eight, unsigned int row)
 {
 	unsigned char	byte;
-	
+
 	byte = 0;
 	byte += ((eight[4] & (1 << row)) >> row) << 7;
 	byte += ((eight[0] & (1 << row)) >> row) << 6;
@@ -62,7 +61,6 @@ static unsigned char	set_final_byte(unsigned char *eight, unsigned int row)
 
 void					des_final_perm(unsigned char *eight)
 {
-	//printf("des_final_perm(%s)\n", eight);
 	unsigned char	*bytes;
 	int				i;
 

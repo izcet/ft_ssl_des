@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/01 15:22:18 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/22 19:27:16 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 23:18:26 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #define LSHBY(a,b,c) ((str[a] & b) << c)
 #define RSHBY(a,b,c) ((str[a] & b) >> c)
 #define GETAT(a,b) (str[a] & b)
+
 static unsigned char	des_expansion(unsigned char four)
 {
 	unsigned char	six;
@@ -74,19 +75,19 @@ static unsigned char	*des_pbox_perm(unsigned char *str)
 }
 
 /*
- ** left		= 4 chars
- ** right	= 4 chars
- ** key		= 6 chars, subkey
- ** last		= 8 chars. NULL if ECB mode, otherwise CBC
- */
+** left		= 4 chars
+** right	= 4 chars
+** key		= 6 chars, subkey
+** last		= 8 chars. NULL if ECB mode, otherwise CBC
+*/
 
 /*
- ** right must remain untouched
- ** temporary string contains right's workings
- ** left is modified by xor with temp to become the new right
- */
+** right must remain untouched
+** temporary string contains right's workings
+** left is modified by xor with temp to become the new right
+*/
 
-void			des_round(unsigned char *left, unsigned char *right, 
+void					des_round(unsigned char *left, unsigned char *right,
 		unsigned char *subkey)
 {
 	unsigned char	*temp;

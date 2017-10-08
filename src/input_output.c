@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/14 16:28:03 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 23:09:26 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #define RBUFSIZE 64
 
-static char		*append_data(char *str, char *buff, unsigned int l, 
+static char		*append_data(char *str, char *buff, unsigned int l,
 		unsigned int r)
 {
 	char			*final;
@@ -37,6 +37,16 @@ static char		*append_data(char *str, char *buff, unsigned int l,
 	return (final);
 }
 
+static int		get_file_descriptor(char *file)
+{
+	int		fd;
+
+	fd = 0;
+	if (file && !ft_equals(file, "-"))
+		fd = open(file, O_RDONLY);
+	return (fd);
+}
+
 unsigned char	*read_data(char *file, char *name, unsigned int *len)
 {
 	int		fd;
@@ -44,10 +54,7 @@ unsigned char	*read_data(char *file, char *name, unsigned int *len)
 	char	line[RBUFSIZE + 1];
 	char	*data;
 
-	fd = 0;
-	if (file && !ft_equals(file, "-"))
-		fd = open(file, O_RDONLY);
-	if (fd < 0)
+	if ((fd = get_file_descriptor(file)) < 0)
 	{
 		com_err_3(name, "can't open file: '", file, "'");
 		return (NULL);
@@ -56,7 +63,7 @@ unsigned char	*read_data(char *file, char *name, unsigned int *len)
 	data = ft_strnew(0);
 	while ((ret = read(fd, line, RBUFSIZE)) > 0)
 	{
-		data = append_data(data, line, *len, ret); 
+		data = append_data(data, line, *len, ret);
 		*len += ret;
 		ft_bzero(line, sizeof(char) * RBUFSIZE + 1);
 	}
@@ -69,15 +76,14 @@ unsigned char	*read_data(char *file, char *name, unsigned int *len)
 	return ((unsigned char *)data);
 }
 
-int			write_to_file(char *str, char *file, char *name, unsigned int len)
+int				write_to_file(char *str, char *file, char *name, unsigned int l)
 {
 	int		fd;
 
 	fd = open(file, O_WRONLY | O_CREAT, 0644);
 	if (fd < 0)
 		return (com_err_3(name, "unable to open file '", file, "'"));
-	if ((write(fd, str, len)) == -1)
+	if ((write(fd, str, l)) == -1)
 		return (com_err_3(name, "unable to write to file '", file, "'"));
 	return (0);
 }
-

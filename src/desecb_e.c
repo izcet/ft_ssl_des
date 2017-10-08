@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 22:36:53 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 22:58:28 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ unsigned char	*set_block(unsigned char *str, unsigned int i, unsigned int len)
 
 unsigned char	*des_ecb_block(unsigned char *block, unsigned char *key, int d)
 {
-	unsigned int		i;
+	unsigned int	i;
 	unsigned char	*subkey;
 	unsigned char	*left;
 	unsigned char	*right;

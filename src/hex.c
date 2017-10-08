@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/08 16:33:25 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/13 22:09:00 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 22:54:15 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ unsigned char	get_hex_val(char big, char smol)
 	return (ret);
 }
 
-int		ft_ishex(char c)
+int				ft_ishex(char c)
 {
 	if (ft_isdigit(c))
 		return (1);

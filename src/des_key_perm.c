@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/27 16:19:48 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/25 16:12:20 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 22:53:55 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 unsigned char	*des_key_reduction(unsigned char *eight, int j)
 {
 	unsigned char	*seven;
-	int		i;
+	int				i;
 
 	seven = (unsigned char *)ft_strnew(7);
 	if (!seven)
@@ -84,7 +84,7 @@ void			des_key_l_rot(unsigned char *key, int num)
 	key[0] = (key[0] << num) + (key[1] >> (8 - num));
 	key[1] = (key[1] << num) + (key[2] >> (8 - num));
 	key[2] = (key[2] << num) + (key[3] >> (8 - num));
-	key[3] = (key[3] << num) + (key[4] >> (8 - num)); 
+	key[3] = (key[3] << num) + (key[4] >> (8 - num));
 	key[3] = (key[3] & ~((3 << (num + 2)) & ~15)) + (ltemp);
 	key[4] = (key[4] << num) + (key[5] >> (8 - num));
 	key[5] = (key[5] << num) + (key[6] >> (8 - num));

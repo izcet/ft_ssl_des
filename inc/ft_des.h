@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 22:35:34 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 23:14:17 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,14 @@ void				*destroy_t_des(t_des *data);
 
 int					des_parse(int argc, char **argv, t_des *data);
 
+void				cbc_pre_block(t_des *data, unsigned char *block);
+void				cbc_post_block(t_des *d, unsigned char *b, unsigned int i);
+
 int					des_validate_key(t_des *data);
 int					des_validate_iv(t_des *data);
 
 void				des_init_perm(unsigned char *eight);
 void				des_final_perm(unsigned char *eight);
-
-unsigned char		*des_get_left(unsigned char *block);
-unsigned char		*des_get_right(unsigned char *block);
-unsigned char		*des_zipper(unsigned char *left, unsigned char *right);
 
 unsigned char		des_sbox(unsigned char sixbits, unsigned char *box);
 unsigned char		*des_sbox_sub(unsigned char *bits);
