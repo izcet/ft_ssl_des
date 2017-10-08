@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 16:17:45 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 22:35:34 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct		s_des
 	char			*infile;
 	char			*outfile;
 	unsigned char	*key;
-	char			keylen; // 8 for 1 key, 24 for 3 keys
+	char			keylen;
 	int				v:2;
 	unsigned char	*iv;
 	t_com			*c;
@@ -47,7 +47,6 @@ void				des3ecb_u(t_com *command);
 void				*des3cbc_p(t_com *command, int argc, char **argv);
 int					des3cbc_e(t_com *command, void *data_t_des);
 void				des3cbc_u(t_com *command);
-
 
 t_des				*create_t_des(t_com *command, int keylen, int v);
 void				*destroy_t_des(t_des *data);
@@ -72,7 +71,7 @@ void				des_key_r_rot(unsigned char *key, int num);
 void				des_key_l_rot(unsigned char *key, int num);
 unsigned char		*des_get_subkey(unsigned char *key);
 
-void				des_round(unsigned char *left, unsigned char *right, 
+void				des_round(unsigned char *left, unsigned char *right,
 		unsigned char *subkey);
 
 unsigned char		*set_block(unsigned char *str, unsigned int i,
@@ -86,6 +85,8 @@ void				triple_des_cbc_message(t_des *data);
 unsigned char		**init_des3_keys(unsigned char *key);
 void				destroy_des3_keys(unsigned char **keys);
 unsigned char		*des3_block(unsigned char *blk, unsigned char **key, int d);
+
+int					des_act(t_des *d, t_com *c, void (*func)(t_des *));
 
 void				test_des_print_key(unsigned char *eight);
 void				test_des_print_subkey(unsigned char *seven);

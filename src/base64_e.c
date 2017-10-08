@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/09/15 16:59:11 by irhett           ###   ########.fr       */
+/*   Updated: 2017/10/07 22:22:46 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,26 @@ unsigned char	*base64_decode(unsigned char *enc, char *key, unsigned int *len,
 	return (str);
 }
 
+static int		base64_output(unsigned char *string, t_b64 *d, t_com *c)
+{
+	int		ret;
+
+	ret = 0;
+	if (string)
+	{
+		if (d->outfile)
+			ret = write_to_file((char *)string, d->outfile, c->name, d->strlen);
+		else
+		{
+			write(1, string, d->strlen);
+			if (!d->decode)
+				ft_putchar('\n');
+		}
+		free(string);
+	}
+	return (ret);
+}
+
 int				base64_e(t_com *c, void *data_t_b64)
 {
 	t_b64			*d;
@@ -78,19 +98,7 @@ int				base64_e(t_com *c, void *data_t_b64)
 		string = base64_encode(d->string, BASE64_KEY, d->strlen);
 		d->strlen = ft_strlen((char *)string);
 	}
-	ret = 0;
-	if (string)
-	{
-		if (d->outfile)
-			ret = write_to_file((char *)string, d->outfile, c->name, d->strlen);
-		else
-		{
-			write(1, string, d->strlen);
-			if (!d->decode)
-				ft_putchar('\n');
-		}
-		free(string);
-	}
+	ret = base64_output(string, d, c);
 	destroy_t_b64(d);
 	return (ret);
 }
