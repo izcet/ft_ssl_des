@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 23:13:28 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/20 23:15:19 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,13 +58,27 @@ void			des_cbc_message(t_des *data)
 	data->str = done;
 }
 
-int				descbc_e(t_com *com, void *d_t_des)
+int				descbc_e(t_com *c, void *d_t_des)
 {
 	t_des			*d;
+	unsigned char	*temp;
 
 	d = (t_des *)d_t_des;
-	d->str = read_data(d->infile, com->name, &(d->strlen));
-	if (!d->str)
-		return (1);
-	return (des_act(d, com, des_cbc_message));
+	if ((d->str = read_data(d->infile, d->c->name, &(d->strlen))))
+	{
+		if (d->str && d->decode && d->base64)
+		{
+			temp = base64_decode(d->str, BASE64_KEY, &(d->strlen), c->name);
+			free(d->str);
+			d->str = temp;
+		}
+		if (d->str)
+		{
+			if (!d->decode || ((d->strlen % 8) == 0))
+				return (des_act(d, c, des_cbc_message));
+			com_err(c->name, "Message not multiple of block length.");
+		}
+	}
+	destroy_t_des(d);
+	return (1);
 }
