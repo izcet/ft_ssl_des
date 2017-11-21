@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/07 22:28:05 by irhett            #+#    #+#             */
-/*   Updated: 2017/11/20 21:56:22 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/20 22:31:54 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,6 @@ int				des_act(t_des *d, t_com *c, void (*func)(t_des *))
 	int				ret;
 
 	ret = 0;
-	if (d->decode && d->base64)
-	{
-		temp = base64_decode(d->str, BASE64_KEY, &(d->strlen), c->name);
-		FREESET(d->str, temp);
-	}
 	func(d);
 	if (d->base64 && !d->decode)
 	{
@@ -55,5 +50,6 @@ int				des_act(t_des *d, t_com *c, void (*func)(t_des *))
 	else
 		write_to_stdout((char*)d->str, d->strlen, d->base64, d->decode);
 	destroy_t_des(d);
+	(void)c;
 	return (ret);
 }

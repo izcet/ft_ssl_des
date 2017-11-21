@@ -6,11 +6,12 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/26 00:36:34 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 23:16:02 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/20 22:47:57 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
+#define FREESET(foo, bar) free(foo); foo = bar;
 
 void	triple_des_cbc_message(t_des *data)
 {
@@ -40,9 +41,17 @@ void	triple_des_cbc_message(t_des *data)
 int		des3cbc_e(t_com *com, void *d_t_des)
 {
 	t_des			*d;
+	unsigned char	*temp;
 
 	d = (t_des *)d_t_des;
-	d->str = read_data(d->infile, com->name, &(d->strlen));
+	d->str = read_data(d->infile, d->c->name, &(d->strlen));
+	if (d->decode && d->base64)
+	{
+		temp = base64_decode(d->str, BASE64_KEY, &(d->strlen), com->name);
+		FREESET(d->str, temp);
+	}
+	if (d->decode && ((d->strlen % 8) != 0))
+		return (com_err(com->name, "Message not a multiple of block length."));
 	if (!d->str)
 		return (1);
 	return (des_act(d, com, triple_des_cbc_message));

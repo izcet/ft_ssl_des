@@ -6,11 +6,12 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 23:37:55 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 22:39:13 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/20 22:47:30 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
+#define FREESET(foo, bar) free(foo); foo = bar
 
 void			destroy_des3_keys(unsigned char **keys)
 {
@@ -83,9 +84,17 @@ void			triple_des_message(t_des *data)
 int				des3ecb_e(t_com *com, void *d_t_des)
 {
 	t_des			*d;
+	unsigned char	*temp;
 
 	d = (t_des *)d_t_des;
 	if (!(d->str = read_data(d->infile, com->name, &(d->strlen))))
 		return (1);
+	if (d->decode && d->base64)
+	{
+		temp = base64_decode(d->str, BASE64_KEY, &(d->strlen), com->name);
+		FREESET(d->str, temp);
+	}
+	if (d->decode && ((d->strlen % 8) != 0))
+		return (com_err(com->name, "Message not a multiple of block length."));
 	return (des_act(d, com, triple_des_message));
 }
