@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 22:17:56 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/20 21:54:24 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ typedef struct		s_wrap
 	t_com			*list;
 }					t_wrap;
 
+typedef struct		s_output
+{
+	char			*com;
+	char			*file;
+	char			*str;
+	unsigned int	strlen;
+	char			newline:2;
+}					t_output;
+
+
 t_wrap				*init_commands(void);
 void				delete_commands(t_wrap *commands);
 void				print_command_list(t_wrap *commands, char *error);
@@ -49,7 +59,8 @@ int					com_err(char *command, char *err);
 int					com_err_2(char *command, char *err, char *val);
 int					com_err_3(char *command, char *err, char *val, char *end);
 
-int					write_to_file(char *s, char *f, char *com, unsigned int l);
+int					write_to_file(t_output *output);
+int					write_to_stdout(char *str, int strlen, char b64, char dec);
 unsigned char		*read_data(char *file, char *invoker, unsigned int *len);
 
 void				swap_ptr(void **a, void **b);

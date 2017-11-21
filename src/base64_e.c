@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 22:22:46 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/20 22:05:53 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,24 @@ unsigned char	*base64_decode(unsigned char *enc, char *key, unsigned int *len,
 	return (str);
 }
 
+static t_output	*make_b64_output(t_b64 *d, unsigned char *string)
+{
+	t_output	*o;
+
+	o = (t_output *)malloc(sizeof(t_output));
+	if (!o)
+		return (NULL);
+	o->com = d->c->name;
+	o->file = d->outfile;
+	o->str = (char *)string;
+	o->strlen = d->strlen;
+	if (d->decode)
+		o->newline = 0;
+	else
+		o->newline = 1;
+	return (o);
+}
+
 static int		base64_output(unsigned char *string, t_b64 *d, t_com *c)
 {
 	int		ret;
@@ -72,7 +90,7 @@ static int		base64_output(unsigned char *string, t_b64 *d, t_com *c)
 	if (string)
 	{
 		if (d->outfile)
-			ret = write_to_file((char *)string, d->outfile, c->name, d->strlen);
+			ret = write_to_file(make_b64_output(d, string));
 		else
 		{
 			write(1, string, d->strlen);
@@ -81,6 +99,7 @@ static int		base64_output(unsigned char *string, t_b64 *d, t_com *c)
 		}
 		free(string);
 	}
+	(void)c;
 	return (ret);
 }
 

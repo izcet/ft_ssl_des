@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 16:37:49 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 23:09:26 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/20 21:55:16 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,29 @@ unsigned char	*read_data(char *file, char *name, unsigned int *len)
 	return ((unsigned char *)data);
 }
 
-int				write_to_file(char *str, char *file, char *name, unsigned int l)
+int				write_to_file(t_output *o)
 {
 	int		fd;
 
-	fd = open(file, O_WRONLY | O_CREAT, 0644);
+	if (!o)
+		return (0);
+	fd = open(o->file, O_WRONLY | O_CREAT, 0644);
 	if (fd < 0)
-		return (com_err_3(name, "unable to open file '", file, "'"));
-	if ((write(fd, str, l)) == -1)
-		return (com_err_3(name, "unable to write to file '", file, "'"));
+		return (com_err_3(o->com, "unable to open file '", o->file, "'"));
+	if ((write(fd, o->str, o->strlen)) == -1)
+		return (com_err_3(o->com, "unable to write to file '", o->file, "'"));
+	if (o->newline && (write(fd, "\n", 1) == -1))
+		return (com_err_3(o->com, "failed writing newline in '", o->file, "'"));
+	free(o);
 	return (0);
+}
+
+int				write_to_stdout(char *str, int strlen, char b64, char dec)
+{
+	int		ret;
+
+	ret = write(1, str, strlen);
+	if (b64 && !dec)
+		ret += write(1, "\n", 1);
+	return (ret);
 }
