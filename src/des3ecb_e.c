@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 23:37:55 by irhett            #+#    #+#             */
-/*   Updated: 2017/11/20 23:15:50 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/22 14:14:09 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,7 @@ void			triple_des_message(t_des *data)
 		done = raw_append(done, block, i - 8, 8);
 		destroy_des3_keys(keys);
 	}
-	data->strlen = i;
-	free(data->str);
-	data->str = done;
+	des_pad(data, i, done);
 }
 
 int				des3ecb_e(t_com *c, void *d_t_des)
@@ -96,6 +94,7 @@ int				des3ecb_e(t_com *c, void *d_t_des)
 		}
 		if (d->str)
 		{
+			des_pad_input(d);
 			if (!d->decode || ((d->strlen % 8) == 0))
 				return (des_act(d, c, triple_des_message));
 			com_err(c->name, "Message not multiple of block length.");

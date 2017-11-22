@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/10/07 23:14:17 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/22 13:59:24 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,8 @@ void				des_ecb_message(t_des *data);
 void				des_cbc_message(t_des *data);
 void				triple_des_message(t_des *data);
 void				triple_des_cbc_message(t_des *data);
-
+void				des_pad(t_des *d, unsigned int i, unsigned char *s);
+void				des_pad_input(t_des *data);
 unsigned char		**init_des3_keys(unsigned char *key);
 void				destroy_des3_keys(unsigned char **keys);
 unsigned char		*des3_block(unsigned char *blk, unsigned char **key, int d);

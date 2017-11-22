@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/11/20 21:54:24 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/21 10:47:23 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ typedef struct		s_output
 	unsigned int	strlen;
 	char			newline:2;
 }					t_output;
-
 
 t_wrap				*init_commands(void);
 void				delete_commands(t_wrap *commands);

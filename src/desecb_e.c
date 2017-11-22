@@ -6,15 +6,17 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/11/20 23:14:00 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/22 14:12:55 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ftssl.h"
 
+// back handles the padding for the last block if less than 8 chars
 unsigned char	*set_block(unsigned char *str, unsigned int i, unsigned int len)
 {
 	unsigned char	*block;
+	unsigned int	back;
 
 	block = (unsigned char *)ft_strnew(8);
 	if (len - i >= 8)
@@ -24,6 +26,9 @@ unsigned char	*set_block(unsigned char *str, unsigned int i, unsigned int len)
 	else
 	{
 		raw_copy(block, str, len - i);
+		back = 7;
+		while (back >= (len - i))
+			block[back--] = 8 - (len - i);
 	}
 	return (block);
 }
@@ -75,9 +80,7 @@ void			des_ecb_message(t_des *data)
 		done = raw_append(done, block, i - 8, 8);
 		free(subkey);
 	}
-	data->strlen = i;
-	free(data->str);
-	data->str = done;
+	des_pad(data, i, done);
 }
 
 int				desecb_e(t_com *c, void *d_t_des)
@@ -96,6 +99,7 @@ int				desecb_e(t_com *c, void *d_t_des)
 		}
 		if (d->str)
 		{
+			des_pad_input(d);
 			if (!d->decode || ((d->strlen % 8) == 0))
 				return (des_act(d, c, des_ecb_message));
 			com_err(c->name, "Message not multiple of block length.");
