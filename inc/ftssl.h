@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 16:16:13 by irhett            #+#    #+#             */
-/*   Updated: 2017/11/21 10:47:23 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/22 14:40:37 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,7 @@ unsigned char		*raw_expand(unsigned char *str, unsigned char *extra,
 void				raw_xor(unsigned char *s, unsigned char *o, unsigned int l);
 void				raw_copy(unsigned char *dst, unsigned char *src,
 		unsigned int l);
+
+void				free_set(void *prev, void *next);
+
 #endif
