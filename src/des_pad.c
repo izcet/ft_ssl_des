@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/22 13:24:37 by irhett            #+#    #+#             */
-/*   Updated: 2017/11/22 14:12:31 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/26 15:14:41 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ static void		handle_decode(t_des *data, unsigned int len)
 	last = data->str[last_i];
 	if (last <= 8)
 	{
-		while ((data->str[last_i] == last) && (len - last_i) <= last) {
+		while ((data->str[last_i] == last) && (len - last_i) <= last)
+		{
 			last_i--;
 			data->strlen--;
 		}

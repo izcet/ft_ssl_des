@@ -6,7 +6,7 @@
 /*   By: irhett <irhett@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 17:56:16 by irhett            #+#    #+#             */
-/*   Updated: 2017/11/22 15:20:37 by irhett           ###   ########.fr       */
+/*   Updated: 2017/11/26 15:14:54 by irhett           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 ** back handles the padding for the last block if less than 8 chars
 ** the else block should be obsoleted by the prepadding done at the beginning
 */
+
 unsigned char	*set_block(unsigned char *str, unsigned int i, unsigned int len)
 {
 	unsigned char	*block;
